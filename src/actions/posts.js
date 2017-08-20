@@ -1,4 +1,5 @@
-import { ADD_NEW_POST } from './index';
+import { ADD_NEW_POST, GET_ALL_POSTS } from './index';
+import * as ReadableAPI from '../util/readableAPI';
 
 export function newPost(post={}){
     return {
@@ -6,3 +7,14 @@ export function newPost(post={}){
         payload: post
     }
 }
+
+export const getAllPosts = posts => ({
+    type: GET_ALL_POSTS,
+    posts
+});
+
+export const fetchAllPosts = () => dispatch => (
+    ReadableAPI
+        .getAllPosts()
+        .then(posts => dispatch(getAllPosts(posts)))
+);

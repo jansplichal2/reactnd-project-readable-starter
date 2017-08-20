@@ -3,7 +3,7 @@ import comments from './comments'
 import posts from './posts'
 
 function categories (state = {}, action) {
-    console.log('Categories', state);
+    //console.log('Categories', state);
     return state;
 }
 
