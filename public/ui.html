@@ -4,10 +4,21 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
           integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/3568097144.js"></script>
+
+    <style>
+        .post-detail-header {
+            font-weight: bold;
+        }
+
+        .post-detail-body {
+            font-size: .9em;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -21,15 +32,73 @@
                     Categories
                 </li>
                 <li class="list-group-item">
-                    react
+                    <a href="#">react</a>
                 </li>
                 <li class="list-group-item">
-                    redux
+                    <a href="#">redux</a>
                 </li>
                 <li class="list-group-item">
-                    udacity
+                    <a href="#">udacity</a>
                 </li>
             </ul>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <button type="button" class="btn btn-lg btn-outline-primary">New Post</button>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <div style="padding: 15px">
+                <div class="">
+                    <span class="post-detail-header">Title:</span>
+                    <span class="post-detail-data">Udacity is the place to learn React</span>
+                </div>
+                <div class="">
+                    <span class="post-detail-header">Author:</span>
+                    <span class="post-detail-data">thingone</span>
+                </div>
+                <div class="">
+                    <span class="post-detail-header">Created:</span>
+                    <span class="post-detail-data">12/12/2017</span>
+                </div>
+                <div class="">
+                    <span class="post-detail-header">Score:</span>
+                    <span class="post-detail-data">4</span>
+                </div>
+                <div class="">
+                    <span class="post-detail-header">No of comments:</span>
+                    <span class="post-detail-data">5</span>
+                </div>
+
+                <div class="" style="margin-top: 12px">
+            <span class="post-detail-body">
+                Learn Redux in 10 minutes!
+                Just kidding. It takes more than 10 minutes to learn technology.
+            </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-4" style="padding: 15px">
+            <div>
+                <i class="fa fa-thumbs-up fa-2x fa-fw" aria-hidden="true"></i>
+                <i class="fa fa-edit fa-2x fa-fw" aria-hidden="true"></i>
+            </div>
+            <div>
+                <i class="fa fa-thumbs-down fa-2x fa-fw" aria-hidden="true"></i>
+                <i class="fa fa-trash fa-2x fa-fw" aria-hidden="true"></i>
+            </div>
         </div>
     </div>
 </div>
