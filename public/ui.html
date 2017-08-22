@@ -18,6 +18,32 @@
             font-size: .9em;
         }
 
+        .fa {
+            color: #007bff;
+            cursor: pointer;
+        }
+
+        .fa:hover {
+            color: #0056b3;
+        }
+
+        .numberic_right_align {
+            text-align: right;
+        }
+
+        .controls_column {
+            vertical-align: middle !important;
+            text-align: center;
+        }
+
+        .sorting-arrows {
+            font-weight: 100;
+            font-size: .8rem;
+        }
+
+        .sortable-table-header {
+            cursor: pointer ;
+        }
     </style>
 </head>
 <body>
@@ -25,6 +51,19 @@
 <br><br>
 
 <div class="container">
+    <div class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills float-right">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </nav>
+        <h3 class="text-muted">Udemy Readable</h3>
+    </div>
+
+    <br><br>
+
     <div class="row">
         <div class="col-3">
             <ul class="list-group">
@@ -43,6 +82,10 @@
             </ul>
         </div>
     </div>
+    <br><br>
+    <footer class="footer">
+        <p>&copy; Jan Splichal 2017</p>
+    </footer>
 </div>
 
 <br><br>
@@ -92,13 +135,113 @@
         </div>
         <div class="col-4" style="padding: 15px">
             <div>
-                <i class="fa fa-thumbs-up fa-2x fa-fw" aria-hidden="true"></i>
-                <i class="fa fa-edit fa-2x fa-fw" aria-hidden="true"></i>
+                <i class="fa fa-thumbs-up fa-2x fa-fw" aria-hidden="true" title="Vote up"></i>
+                <i class="fa fa-edit fa-2x fa-fw" aria-hidden="true" title="Edit"></i>
             </div>
-            <div>
-                <i class="fa fa-thumbs-down fa-2x fa-fw" aria-hidden="true"></i>
-                <i class="fa fa-trash fa-2x fa-fw" aria-hidden="true"></i>
+            <div style="margin-top: 10px">
+                <i class="fa fa-thumbs-down fa-2x fa-fw" aria-hidden="true" title="Vote down"></i>
+                <i class="fa fa-trash fa-2x fa-fw" aria-hidden="true" title="Remove"></i>
             </div>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <form>
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" id="title" aria-describedby="titleHelp"
+                           placeholder="Enter title">
+                    <small id="titleHelp" class="form-text text-muted"></small>
+                </div>
+                <div class="form-group">
+                    <label for="body">Body</label>
+                    <textarea class="form-control" id="body" rows="5" placeholder=""></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select class="form-control" id="category">
+                        <option>react</option>
+                        <option>redux</option>
+                        <option>udacity</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-lg btn-outline-primary">Add Post</button>
+                <button type="reset" class="btn-lg btn-outline-secondary">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <table class="table">
+                <thead class="thead-inverse">
+                <tr>
+                    <th>Title</th>
+                    <th class="sortable-table-header">Created&nbsp;<span class="sorting-arrows">&uarr;&darr;</span></th>
+                    <th class="sortable-table-header">Score&nbsp;<span class="sorting-arrows">&uarr;&darr;</span></th>
+                    <th>Author</th>
+                    <th>Category</th>
+                    <th>Comments</th>
+                    <th>Control</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><a href="#">Udacity is the best place to learn React</a></td>
+                    <td>12/12/2016</td>
+                    <td class="numberic_right_align">5</td>
+                    <td>thingone</td>
+                    <td>react</td>
+                    <td class="numberic_right_align">5</td>
+                    <td class="controls_column">
+                        <i class="fa fa-thumbs-up" aria-hidden="true" title="Vote up"></i>
+                        <i class="fa fa-thumbs-down" aria-hidden="true" title="Vote down"></i>
+                        <br>
+                        <i class="fa fa-edit" aria-hidden="true" title="Edit"></i>
+                        <i class="fa fa-trash" aria-hidden="true" title="Remove"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="#">Learn Redux in 10 minutes!</a></td>
+                    <td>1/1/2016</td>
+                    <td class="numberic_right_align">-5</td>
+                    <td>thingtwo</td>
+                    <td>redux</td>
+                    <td class="numberic_right_align">1</td>
+                    <td class="controls_column">
+                        <i class="fa fa-thumbs-up" aria-hidden="true" title="Vote up"></i>
+                        <i class="fa fa-thumbs-down" aria-hidden="true" title="Vote down"></i>
+                        <br>
+                        <i class="fa fa-edit" aria-hidden="true" title="Edit"></i>
+                        <i class="fa fa-trash" aria-hidden="true" title="Remove"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="#">Udacity is the best</a></td>
+                    <td>11/18/2017</td>
+                    <td class="numberic_right_align">4</td>
+                    <td>thingone</td>
+                    <td>udacity</td>
+                    <td class="numberic_right_align">11</td>
+                    <td class="controls_column">
+                        <i class="fa fa-thumbs-up" aria-hidden="true" title="Vote up"></i>
+                        <i class="fa fa-thumbs-down" aria-hidden="true" title="Vote down"></i>
+                        <br>
+                        <i class="fa fa-edit" aria-hidden="true" title="Edit"></i>
+                        <i class="fa fa-trash" aria-hidden="true" title="Remove"></i>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
