@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import {Route} from 'react-router-dom';
-import CommentBox from './CommentBox';
+import CategoryList from './CategoriesList';
 import DeleteDialog from './DeleteDialog';
 import PostPage from './PostPage';
-
+import Header from './Header';
+import Footer from './Footer';
+import './App.css';
 
 class Readable extends Component {
     render() {
         return (
             <div className="app">
                 <Route exact path="/" render={() => (
-                    <div>
-                        Page 1
-                        <CommentBox commentId="894tuq4ut84ut8v4t8wun89g"/>
+                    <div className="container">
+                        <Header page="Home"/>
+                        <br/><br/>
+                        <CategoryList/>
+                        <br/><br/>
+                        <Footer/>
                     </div>
                 )}/>
                 <Route exact path="/:category" render={(route) => (

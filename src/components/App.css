@@ -1,0 +1,38 @@
+.header {
+    margin-top: 15px;
+}
+
+.post-detail-header {
+    font-weight: bold;
+}
+
+.post-detail-body {
+    font-size: .9em;
+}
+
+.fa {
+    color: #007bff;
+    cursor: pointer;
+}
+
+.fa:hover {
+    color: #0056b3;
+}
+
+.numberic_right_align {
+    text-align: right;
+}
+
+.controls_column {
+    vertical-align: middle !important;
+    text-align: center;
+}
+
+.sorting-arrows {
+    font-weight: 100;
+    font-size: .8rem;
+}
+
+.sortable-table-header {
+    cursor: pointer ;
+}

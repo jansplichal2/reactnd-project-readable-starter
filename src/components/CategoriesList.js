@@ -1,21 +1,33 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { fetchAllCategories } from '../actions/categories';
+import {connect} from 'react-redux';
+import {fetchAllCategories} from '../actions/categories';
 
-class CategoriesList extends Component{
+class CategoriesList extends Component {
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.load();
     }
 
-    render(){
-        const { categories } = this.props;
+    render() {
+        const {categories} = this.props;
 
-        return(
-          <ul>
-              {categories.map(category => (<li key={category.path}>{category.name}</li>))}
-          </ul>
+        return (
+            <div className="row">
+                <div className="col-3">
+                    <ul className="list-group">
+                        <li className="list-group-item list-group-item-dark">
+                            Categories
+                        </li>
+                        {categories.map(category => (
+                            <li className="list-group-item" key={category.path}>
+                                <a href="#">{category.name}</a>
+                            </li>)
+                        )}
+                    </ul>
+                </div>
+            </div>
         );
+
     }
 }
 
