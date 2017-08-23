@@ -3,6 +3,9 @@ import {Route} from 'react-router-dom';
 import CategoryList from './CategoriesList';
 import DeleteDialog from './DeleteDialog';
 import PostPage from './PostPage';
+import PostForm from './PostForm';
+import PostDetail from './PostDetail';
+import PostTable from './PostTable';
 import Header from './Header';
 import Footer from './Footer';
 import './App.css';
@@ -16,6 +19,12 @@ class Readable extends Component {
                         <Header page="Home"/>
                         <br/><br/>
                         <CategoryList/>
+                        <br/><br/>
+                        <PostForm/>
+                        <br/><br/>
+                        <PostDetail/>
+                        <br/><br/>
+                        <PostTable/>
                         <br/><br/>
                         <Footer/>
                     </div>
