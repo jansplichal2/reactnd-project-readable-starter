@@ -1,16 +1,17 @@
-import { ADD_NEW_COMMENT, DELETE_COMMENT } from './index';
+import { ADD_NEW_COMMENT, DELETE_COMMENT, GET_COMMENTS_FOR_POST } from './index';
+import * as ReadableAPI from '../util/readableAPI';
 
-export function newComment(comment={}){
+
+const getCommentsForPost = (comments) => {
     return {
-        type: ADD_NEW_COMMENT,
-        payload: comment
-    }
-}
+      type: GET_COMMENTS_FOR_POST,
+      comments
+    };
+};
 
+export const fetchCommentsForPost = (postId) => (dispatch) => {
+  return ReadableAPI
+      .getPostComments(postId)
+      .then((comments) => dispatch(getCommentsForPost(comments)));
+};
 
-export function deleteComment( {id} ){
-    return {
-        type: DELETE_COMMENT,
-        payload: id
-    }
-}

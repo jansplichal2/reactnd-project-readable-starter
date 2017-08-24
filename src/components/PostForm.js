@@ -1,27 +1,28 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 class PostForm extends Component {
     state = {
-      title: '',
-      body: '',
-      category: ''
+        title: '',
+        body: '',
+        category: ''
     };
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.updateForm = this.updateForm.bind(this);
     }
 
-    updateForm(){
+    updateForm() {
 
     }
 
     render() {
-        const { categories } = this.props;
+        const {categories} = this.props;
         return (
-                <div className="col-6 mx-auto">
-                    <form className="my-4">
+            <div className="row">
+                <div className="col-6">
+                    <form className="mt-3 mb-4">
                         <div className="form-group">
                             <label htmlFor="title">Title</label>
                             <input type="text" className="form-control" id="title" aria-describedby="titleHelp"
@@ -46,6 +47,7 @@ class PostForm extends Component {
                         <button type="reset" className="ml-2 btn btn-lg btn-outline-secondary">Cancel</button>
                     </form>
                 </div>
+            </div>
         );
     }
 

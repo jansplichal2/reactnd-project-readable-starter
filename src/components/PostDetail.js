@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {formatTimestamp} from '../util/utils';
 import CommentTable from './CommentTable';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class PostDetail extends Component {
     render() {
         const post = this.props.post;
-        if(!post){
+        if (!post) {
             return <span/>;
         }
 
@@ -17,7 +17,7 @@ class PostDetail extends Component {
         } = post;
 
         return (
-            <div className="row my-5">
+            <div className="row justify-content-between my-2">
                 <div className="col-8">
                     <div>
                         <div className="">
@@ -49,20 +49,22 @@ class PostDetail extends Component {
                     </div>
                 </div>
                 <div className="col-2">
-                    <div>
-                        <i className="fa fa-thumbs-up fa-2x fa-fw" aria-hidden="true" title="Vote up"/>
-                        <i className="fa fa-edit fa-2x fa-fw" aria-hidden="true" title="Edit"/>
-                    </div>
-                    <div style={{"marginTop": "10px"}}>
-                        <i className="fa fa-thumbs-down fa-2x fa-fw" aria-hidden="true" title="Vote down"/>
-                        <i className="fa fa-trash fa-2x fa-fw" aria-hidden="true" title="Remove"/>
+                    <div className="float-right">
+                        <div>
+                            <i className="fa fa-thumbs-up fa-2x fa-fw" aria-hidden="true" title="Vote up"/>
+                            <i className="fa fa-edit fa-2x fa-fw" aria-hidden="true" title="Edit"/>
+                        </div>
+                        <div className="mt-2">
+                            <i className="fa fa-thumbs-down fa-2x fa-fw" aria-hidden="true" title="Vote down"/>
+                            <i className="fa fa-trash fa-2x fa-fw" aria-hidden="true" title="Remove"/>
+                        </div>
                     </div>
                 </div>
-                <div className="col-10 my-4">
-                    <Link className="btn btn-lg btn-outline-primary" to="/">New Comment</Link>
+                <div className="col-10 mt-5">
+                    <Link className="btn btn-lg btn-outline-primary" to="/">New Comment ...</Link>
                 </div>
-                <div className="col-10 my-4">
-                    <CommentTable/>
+                <div className="col-10 mt-5">
+                    <CommentTable post={post.id}/>
                 </div>
             </div>
         );

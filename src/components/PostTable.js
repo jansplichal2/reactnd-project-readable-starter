@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchAllPosts} from '../actions/posts'
+import {formatTimestamp} from '../util/utils';
 import _ from 'lodash';
 
 
@@ -39,7 +40,7 @@ class PostTable extends Component {
                     return (
                         <tr key={post.id}>
                             <td><Link to={this.createLink(post)}>{post.title}</Link></td>
-                            <td>{post.timestamp}</td>
+                            <td>{formatTimestamp(post.timestamp)}</td>
                             <td className="numberic_right_align">{post.voteScore}</td>
                             <td>{post.author}</td>
                             <td>{post.category}</td>

@@ -13,10 +13,7 @@ class Readable extends Component {
     render() {
         return (
             <div className="container app">
-                <div className="row">
-                    <div className="col-12">
-                        <Header/>
-                    </div>
+                    <Header/>
 
                     <Route exact path="/" render={() => (
                         <MainPage/>
@@ -24,10 +21,10 @@ class Readable extends Component {
                     <Switch>
                         <Route exact path="/posts/new" component={PostForm}/>
                         <Route exact path="/:category/:post_id" render={(route) => {
-                            return (<div className="col-12">
+                            return (
                                 <PostDetail
                                     post={route.match.params['post_id']}/>
-                            </div>);
+                            );
                         }}/>
                     </Switch>
                     <Route exact path="/:category" render={(route) => (
@@ -38,8 +35,6 @@ class Readable extends Component {
                                 id="894tuq4ut84ut8v4t8wun89g"/>
                         </div>
                     )}/>
-
-                </div>
                 <Footer/>
             </div>
         )

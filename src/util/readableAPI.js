@@ -30,11 +30,11 @@ export const getPost = (id) =>
         .then(res => res.json());
 
 export const getPostComments = (id) =>
-    fetch(`${api}/posts/${id}/comments`)
+    fetch(`${api}/posts/${id}/comments`, { headers })
         .then(res => res.json());
 
 export const getComment = (id) =>
-    fetch(`${api}/comments/${id}`)
+    fetch(`${api}/comments/${id}`, { headers })
         .then(res => res.json());
 
 export const removeComment = (id) =>
