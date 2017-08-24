@@ -20,7 +20,7 @@ class PostForm extends Component {
     render() {
         const { categories } = this.props;
         return (
-                <div className="col-6">
+                <div className="col-6 mx-auto">
                     <form className="my-4">
                         <div className="form-group">
                             <label htmlFor="title">Title</label>

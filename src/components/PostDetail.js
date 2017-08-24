@@ -17,8 +17,8 @@ class PostDetail extends Component {
         } = post;
 
         return (
-            <div className="row my-4">
-                <div className="col-10">
+            <div className="row my-5">
+                <div className="col-8">
                     <div>
                         <div className="">
                             <span className="post-detail-header">Title: </span>
@@ -58,10 +58,10 @@ class PostDetail extends Component {
                         <i className="fa fa-trash fa-2x fa-fw" aria-hidden="true" title="Remove"/>
                     </div>
                 </div>
-                <div className="col-12 my-4">
+                <div className="col-10 my-4">
                     <Link className="btn btn-lg btn-outline-primary" to="/">New Comment</Link>
                 </div>
-                <div className="col-12 my-4">
+                <div className="col-10 my-4">
                     <CommentTable/>
                 </div>
             </div>

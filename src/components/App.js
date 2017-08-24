@@ -24,7 +24,7 @@ class Readable extends Component {
                     <Switch>
                         <Route exact path="/posts/new" component={PostForm}/>
                         <Route exact path="/:category/:post_id" render={(route) => {
-                            return (<div className="col-12 pl-0">
+                            return (<div className="col-12">
                                 <PostDetail
                                     post={route.match.params['post_id']}/>
                             </div>);
