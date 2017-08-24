@@ -1,23 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const Header = ( { page } ) => {
+const Header = () => {
     return (
         <div className="header clearfix">
             <nav>
                 <ul className="nav nav-pills float-right">
                     <li className="nav-item">
-                        <a className={page !== 'Home' ? 'nav-link active' : 'nav-link'} href="#">Home <span className="sr-only">(current)</span></a>
+                        <Link className="nav-link" to="/">Home</Link>
                     </li>
                 </ul>
             </nav>
             <h3 className="text-muted">Udemy Readable</h3>
         </div>
     );
-};
-
-Header.propTypes = {
-    page: PropTypes.string.isRequired
 };
 
 export default Header;

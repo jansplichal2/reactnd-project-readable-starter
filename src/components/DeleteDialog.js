@@ -4,29 +4,29 @@ import Modal from 'react-modal';
 
 class DeleteDialog extends Component {
     state = {
-        modalOpen: true
+        modalOpen: false
     };
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.closeDialog = this.closeDialog.bind(this);
     }
 
-    openDialog(){
+    openDialog() {
         this.setState({modalOpen: true});
     }
 
-    closeDialog(){
+    closeDialog() {
         this.setState({modalOpen: false});
     }
 
-    render(){
+    render() {
         return (
             <div>
                 <Modal
-                       contentLabel="Remove"
-                       onRequestClose={this.closeDialog}
-                       isOpen={this.state.modalOpen}>
+                    contentLabel="Remove"
+                    onRequestClose={this.closeDialog}
+                    isOpen={this.state.modalOpen}>
                     <button onClick={this.closeDialog}>Remove</button>
                 </Modal>
             </div>

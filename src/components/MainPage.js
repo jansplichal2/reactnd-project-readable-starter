@@ -2,6 +2,7 @@ import React from 'react';
 //import Edit from 'react-icons/lib/fa/edit'
 import CategoriesList from './CategoriesList';
 import PostTable from './PostTable';
+import { Link } from 'react-router-dom';
 
 const MainPage = () => {
     return (
@@ -14,7 +15,7 @@ const MainPage = () => {
                     <PostTable />
                 </div>
                 <div className="ml-auto col-9 my-4">
-                    <button type="button" className="btn btn-lg btn-outline-primary">New Post</button>
+                    <Link className="btn btn-lg btn-outline-primary" to="/posts/new">New Post</Link>
                 </div>
             </div>
         </div>

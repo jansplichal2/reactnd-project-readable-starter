@@ -1,12 +1,18 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchAllPosts} from '../actions/posts'
 import _ from 'lodash';
+
 
 class PostTable extends Component {
 
     componentDidMount() {
         this.props.load();
+    }
+
+    createLink(post) {
+        return `${post.category}/${post.id}`
     }
 
     render() {
@@ -32,7 +38,7 @@ class PostTable extends Component {
                 {_.map(posts, (post) => {
                     return (
                         <tr key={post.id}>
-                            <td><a href="#">{post.title}</a></td>
+                            <td><Link to={this.createLink(post)}>{post.title}</Link></td>
                             <td>{post.timestamp}</td>
                             <td className="numberic_right_align">{post.voteScore}</td>
                             <td>{post.author}</td>

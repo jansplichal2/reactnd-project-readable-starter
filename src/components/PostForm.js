@@ -21,7 +21,7 @@ class PostForm extends Component {
         const { categories } = this.props;
         return (
                 <div className="col-6">
-                    <form>
+                    <form className="my-4">
                         <div className="form-group">
                             <label htmlFor="title">Title</label>
                             <input type="text" className="form-control" id="title" aria-describedby="titleHelp"
@@ -42,8 +42,8 @@ class PostForm extends Component {
                                 )}
                             </select>
                         </div>
-                        <button type="submit" className="btn-lg btn-outline-primary">Add Post</button>
-                        <button type="reset" className="btn-lg btn-outline-secondary">Cancel</button>
+                        <button type="submit" className="btn btn-lg btn-outline-primary">Add Post</button>
+                        <button type="reset" className="ml-2 btn btn-lg btn-outline-secondary">Cancel</button>
                     </form>
                 </div>
         );
