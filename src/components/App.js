@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 import CategoryList from './CategoriesList';
 import DeleteDialog from './DeleteDialog';
-import PostPage from './PostPage';
+import MainPage from './MainPage';
 import PostForm from './PostForm';
 import PostDetail from './PostDetail';
 import PostTable from './PostTable';
@@ -19,9 +19,8 @@ class Readable extends Component {
                         <Header page="Home"/>
                     </div>
 
-
                     <Route exact path="/" render={() => (
-                        <PostPage />
+                        <MainPage />
                     )}/>
                     <Route exact path="/:category" render={(route) => (
                         <div>
@@ -32,10 +31,9 @@ class Readable extends Component {
                         </div>
                     )}/>
                     <Route path="/:category/:post_id" render={(route) => (
-                        <div>
-                            Post detail
-                            <PostPage
-                                post="894tuq4ut84ut8v4t8wun89g"/>
+                        <div className="col-12 pl-0">
+                            <PostDetail
+                                post="6ni6ok3ym7mf1p33lnez"/>
                         </div>
                     )}/>
                 </div>

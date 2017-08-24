@@ -3,7 +3,7 @@ import React from 'react';
 import CategoriesList from './CategoriesList';
 import PostTable from './PostTable';
 
-const PostPage = ( {post} ) => {
+const MainPage = () => {
     return (
         <div className="mt-4">
             <div className="row">
@@ -21,4 +21,4 @@ const PostPage = ( {post} ) => {
     );
 };
 
-export default PostPage;
+export default MainPage;
