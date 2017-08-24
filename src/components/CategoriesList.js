@@ -12,20 +12,16 @@ class CategoriesList extends Component {
         const {categories} = this.props;
 
         return (
-            <div className="row">
-                <div className="col-3">
-                    <ul className="list-group">
-                        <li className="list-group-item list-group-item-dark">
-                            Categories
-                        </li>
-                        {categories.map(category => (
-                            <li className="list-group-item" key={category.path}>
-                                <a href="#">{category.name}</a>
-                            </li>)
-                        )}
-                    </ul>
-                </div>
-            </div>
+            <ul className="list-group">
+                <li className="list-group-item list-group-item-dark">
+                    Categories
+                </li>
+                {categories.map(category => (
+                    <li className="list-group-item" key={category.path}>
+                        <a href="#">{category.name}</a>
+                    </li>)
+                )}
+            </ul>
         );
 
     }

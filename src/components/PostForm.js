@@ -20,7 +20,6 @@ class PostForm extends Component {
     render() {
         const { categories } = this.props;
         return (
-            <div className="row">
                 <div className="col-6">
                     <form>
                         <div className="form-group">
@@ -47,7 +46,6 @@ class PostForm extends Component {
                         <button type="reset" className="btn-lg btn-outline-secondary">Cancel</button>
                     </form>
                 </div>
-            </div>
         );
     }
 

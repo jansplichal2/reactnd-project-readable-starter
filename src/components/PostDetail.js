@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class PostDetail extends Component {
     render() {
         return (
-            <div className="row">
+            <div>
                 <div className="col-4">
                     <div style={{"padding": "15px"}}>
                         <div className="">
