@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import comments from './comments'
-import posts from './posts'
+import comments from './comments';
+import posts from './posts';
+import { reducer as formReducer } from 'redux-form';
 
 function categories (state = {}, action) {
     //console.log('Categories', state);
@@ -10,5 +11,6 @@ function categories (state = {}, action) {
 export default combineReducers({
     comments,
     posts,
-    categories
+    categories,
+    form: formReducer
 });

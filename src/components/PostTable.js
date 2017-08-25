@@ -5,7 +5,6 @@ import {fetchAllPosts} from '../actions/posts'
 import {formatTimestamp} from '../util/utils';
 import _ from 'lodash';
 
-
 class PostTable extends Component {
 
     componentDidMount() {
