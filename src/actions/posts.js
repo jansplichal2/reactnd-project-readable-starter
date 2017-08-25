@@ -1,10 +1,10 @@
 import { ADD_NEW_POST, GET_ALL_POSTS } from './index';
 import * as ReadableAPI from '../util/readableAPI';
 
-export function newPost(post={}){
+export function newPost(post){
     return {
         type: ADD_NEW_POST,
-        payload: post
+        post
     }
 }
 
@@ -17,4 +17,10 @@ export const fetchAllPosts = () => dispatch => (
     ReadableAPI
         .getAllPosts()
         .then(posts => dispatch(getAllPosts(posts)))
+);
+
+export const createPost = values => dispatch => (
+  ReadableAPI
+      .createPost(values)
+      .then(post => dispatch(newPost(post)))
 );

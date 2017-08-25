@@ -10,5 +10,5 @@ export const getAllCategories = categories => ({
 export const fetchAllCategories = () => dispatch => (
     ReadableAPI
         .getAllCategories()
-        .then(categories => dispatch(getAllCategories(categories)))
+        .then(categories => dispatch(getAllCategories(categories.categories)))
 );

@@ -14,6 +14,10 @@ class CommentTable extends Component {
     render(){
         const { comments } = this.props;
 
+        if(_.isEmpty(comments)){
+            return <div></div>;
+        }
+
         return (
             <table className="table">
                 <thead className="thead-inverse">

@@ -8,6 +8,7 @@ import Header from './Header';
 import Footer from './Footer';
 import './App.css';
 import PostForm from './PostForm';
+import CommentForm from './CommentForm';
 
 class Readable extends Component {
     render() {
@@ -20,6 +21,7 @@ class Readable extends Component {
                     )}/>
                     <Switch>
                         <Route exact path="/posts/new" component={PostForm}/>
+                        <Route exact path="/comments/new" component={CommentForm}/>
                         <Route exact path="/:category/:post_id" render={(route) => {
                             return (
                                 <PostDetail

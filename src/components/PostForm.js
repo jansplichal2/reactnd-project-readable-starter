@@ -1,82 +1,27 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
-import { Link } from 'react-router-dom';
-
-const styling = (touched, error) => {
-    let style = 'form-control ';
-    if(touched && error){
-        style += 'is-invalid';
-    } else if(touched){
-        style += 'is-valid';
-    }
-    return style;
-};
-
-
-const renderField = ({
-                         input,
-                         label,
-                         type,
-                         meta: {touched, error}
-                     }) => {
-    const showError = touched && error;
-    const cls = styling(touched, error);
-
-    return (
-        <div className="form-group">
-            <label>
-                {label}
-            </label>
-            <input {...input} className={cls} placeholder={label} type={type}/>
-            {showError &&
-            <div className="invalid-feedback">
-                {error}
-            </div>}
-        </div>);
-};
-
-const renderTextarea = ({
-                            input,
-                            label,
-                            rows,
-                            meta: {touched, error}
-                        }) => {
-    const showError = touched && error;
-    const cls = styling(touched, error);
-
-    return (<div className="form-group">
-        <label>
-            {label}
-        </label>
-        <textarea {...input} className={cls} rows={rows}/>
-        {showError &&
-            <div className="invalid-feedback">
-                {error}
-            </div>}
-    </div>);
-}
+import {Link} from 'react-router-dom';
+import {renderField, renderTextarea} from '../util/forms';
+import {createPost} from '../actions/posts';
+import _ from 'lodash';
 
 class PostForm extends Component {
-    state = {
-        title: '',
-        body: '',
-        category: ''
-    };
-
     constructor(props) {
         super(props);
         this.submitForm = this.submitForm.bind(this);
     }
 
     submitForm(values) {
-        console.log(values);
+        this.props.createPost(values).then(() => {
+            this.props.history.push('/');
+        });
     }
 
     render() {
         const {
             categories, handleSubmit,
-            pristine, reset, submitting
+            submitting
         } = this.props;
 
         return (
@@ -90,7 +35,7 @@ class PostForm extends Component {
                         <div className="form-group">
                             <label htmlFor="category">Category</label>
                             <Field name="category" className="form-control" component="select">
-                                {categories.map(category => (
+                                {_.map(categories, category => (
                                     <option key={category.path} value={category.name}>
                                         {category.name}
                                     </option>)
@@ -101,7 +46,7 @@ class PostForm extends Component {
                             Post
                         </button>
                         <Link to="/"
-                                className="ml-2 btn btn-lg btn-outline-danger">Cancel
+                              className="ml-2 btn btn-lg btn-outline-danger">Cancel
                         </Link>
                     </form>
                 </div>
@@ -130,7 +75,7 @@ const mapStateToProps = (state) => ({
     categories: state.categories
 });
 
-const formWithRedux = reduxForm({form: 'PostForm', validate})(PostForm);
+const formWithRedux = reduxForm({form: 'PostForm', validate, initialValues: {category: 'react'}})(PostForm);
 
-export default connect(mapStateToProps)
+export default connect(mapStateToProps, {createPost})
 (formWithRedux);

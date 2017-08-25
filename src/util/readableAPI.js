@@ -101,12 +101,12 @@ export const downVotePost = (id) => {
     return voteOnPost(id, "downVote");
 };
 
-export const createPost = ({ body, owner, title, category }) => {
+export const createPost = ({ body, title, category }) => {
   const newPost = {
       id: Utils.getUUID(),
       timestamp: Utils.getTimestamp(),
       body,
-      owner,
+      owner: token,
       title,
       category
   };
@@ -118,15 +118,15 @@ export const createPost = ({ body, owner, title, category }) => {
           'Content-Type': 'application/json'
       },
       body: JSON.stringify(newPost)
-  })
+  }).then(res => res.json());
 };
 
-export const createComment = ({ body, owner, parentId }) => {
+export const createComment = ({ body, parentId }) => {
     const newComment = {
         id: Utils.getUUID(),
         timestamp: Utils.getTimestamp(),
         body,
-        owner,
+        owner: token,
         parentId
     };
 
