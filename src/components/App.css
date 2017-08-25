@@ -36,3 +36,9 @@
 .sortable-table-header {
     cursor: pointer ;
 }
+
+.readable-control-list{
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {formatTimestamp} from '../util/utils';
 import CommentTable from './CommentTable';
 import {Link} from 'react-router-dom';
+import Controls from './Controls';
 
 class PostDetail extends Component {
     render() {
@@ -50,14 +51,7 @@ class PostDetail extends Component {
                 </div>
                 <div className="col-2">
                     <div className="float-right">
-                        <div>
-                            <i className="fa fa-thumbs-up fa-2x fa-fw" aria-hidden="true" title="Vote up"/>
-                            <i className="fa fa-edit fa-2x fa-fw" aria-hidden="true" title="Edit"/>
-                        </div>
-                        <div className="mt-2">
-                            <i className="fa fa-thumbs-down fa-2x fa-fw" aria-hidden="true" title="Vote down"/>
-                            <i className="fa fa-trash fa-2x fa-fw" aria-hidden="true" title="Remove"/>
-                        </div>
+                        <Controls size="large"/>
                     </div>
                 </div>
                 <div className="col-10 mt-5">

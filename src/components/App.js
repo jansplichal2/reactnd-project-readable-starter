@@ -8,6 +8,7 @@ import Header from './Header';
 import Footer from './Footer';
 import './App.css';
 import PostForm from './PostForm';
+import Controls from './Controls';
 import CommentForm from './CommentForm';
 
 class Readable extends Component {
@@ -16,27 +17,30 @@ class Readable extends Component {
             <div className="container app">
                     <Header/>
 
-                    <Route exact path="/" render={() => (
-                        <MainPage/>
-                    )}/>
+
                     <Switch>
+                        <Route exact path="/" render={() => (
+                            <MainPage/>
+                        )}/>
                         <Route exact path="/posts/new" component={PostForm}/>
                         <Route exact path="/comments/new" component={CommentForm}/>
+                        <Route exact path="/controls" component={Controls}/>
                         <Route exact path="/:category/:post_id" render={(route) => {
                             return (
                                 <PostDetail
                                     post={route.match.params['post_id']}/>
                             );
                         }}/>
+                        <Route exact path="/:category" render={(route) => (
+                            <div>
+                                Page 2
+                                <DeleteDialog
+                                    category={route.match.params.category}
+                                    id="894tuq4ut84ut8v4t8wun89g"/>
+                            </div>
+                        )}/>
                     </Switch>
-                    <Route exact path="/:category" render={(route) => (
-                        <div>
-                            Page 2
-                            <DeleteDialog
-                                category={route.match.params.category}
-                                id="894tuq4ut84ut8v4t8wun89g"/>
-                        </div>
-                    )}/>
+
                 <Footer/>
             </div>
         )

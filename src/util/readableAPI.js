@@ -106,7 +106,7 @@ export const createPost = ({ body, title, category }) => {
       id: Utils.getUUID(),
       timestamp: Utils.getTimestamp(),
       body,
-      owner: token,
+      author: token,
       title,
       category
   };
@@ -126,7 +126,7 @@ export const createComment = ({ body, parentId }) => {
         id: Utils.getUUID(),
         timestamp: Utils.getTimestamp(),
         body,
-        owner: token,
+        author: token,
         parentId
     };
 
@@ -137,7 +137,7 @@ export const createComment = ({ body, parentId }) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(newComment)
-    })
+    }).then(res => res.json());
 };
 
 

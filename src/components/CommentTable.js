@@ -4,6 +4,7 @@ import { fetchCommentsForPost } from '../actions/comments';
 import PropTypes from 'prop-types';
 import {formatTimestamp} from '../util/utils';
 import _ from 'lodash';
+import Controls from './Controls';
 
 class CommentTable extends Component {
     componentDidMount(){
@@ -40,11 +41,7 @@ class CommentTable extends Component {
                             <td className="numberic_right_align">{comment.voteScore}</td>
                             <td>{comment.author}</td>
                             <td className="controls_column">
-                                <i className="fa fa-thumbs-up" aria-hidden="true" title="Vote up"/>
-                                <i className="fa fa-thumbs-down" aria-hidden="true" title="Vote down"/>
-                                <br/>
-                                <i className="fa fa-edit" aria-hidden="true" title="Edit"/>
-                                <i className="fa fa-trash" aria-hidden="true" title="Remove"/>
+                                <Controls/>
                             </td>
                         </tr>
                     );
