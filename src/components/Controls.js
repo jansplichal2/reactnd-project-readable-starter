@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Controls = ({size, objectId, onVoteUp, onVoteDown, onEdit, onDelete}) => {
 
@@ -21,6 +22,15 @@ const Controls = ({size, objectId, onVoteUp, onVoteDown, onEdit, onDelete}) => {
             </div>
         </div>
     );
+};
+
+Controls.propTypes = {
+  size: PropTypes.string,
+  objectId: PropTypes.string.isRequired,
+  onVoteUp: PropTypes.func.isRequired,
+  onVoteDown: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired
 };
 
 export default Controls;

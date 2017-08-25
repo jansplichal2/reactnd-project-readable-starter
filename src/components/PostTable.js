@@ -46,7 +46,11 @@ class PostTable extends Component {
                             <td>{post.category}</td>
                             <td className="numberic_right_align">5</td>
                             <td className="controls_column">
-                                <Controls/>
+                                <Controls objectId={post.id}
+                                          onVoteUp={(id) => (console.log('Vote up', id))}
+                                          onVoteDown={(id) => (console.log('Vote down', id))}
+                                          onEdit={(id) => (console.log('Edit', id))}
+                                          onDelete={(id) => (console.log('Delete', id))}/>
                             </td>
                         </tr>
                     );

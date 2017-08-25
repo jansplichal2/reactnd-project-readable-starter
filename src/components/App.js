@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Route} from 'react-router-dom';
-import { Switch } from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom';
 import DeleteDialog from './DeleteDialog';
 import MainPage from './MainPage';
 import PostDetail from './PostDetail';
@@ -15,32 +14,29 @@ class Readable extends Component {
     render() {
         return (
             <div className="container app">
-                    <Header/>
-
-
-                    <Switch>
-                        <Route exact path="/" render={() => (
-                            <MainPage/>
-                        )}/>
-                        <Route exact path="/posts/new" component={PostForm}/>
-                        <Route exact path="/comments/new" component={CommentForm}/>
-                        <Route exact path="/controls" component={Controls}/>
-                        <Route exact path="/:category/:post_id" render={(route) => {
-                            return (
-                                <PostDetail
-                                    post={route.match.params['post_id']}/>
-                            );
-                        }}/>
-                        <Route exact path="/:category" render={(route) => (
-                            <div>
-                                Page 2
-                                <DeleteDialog
-                                    category={route.match.params.category}
-                                    id="894tuq4ut84ut8v4t8wun89g"/>
-                            </div>
-                        )}/>
-                    </Switch>
-
+                <Header/>
+                <Switch>
+                    <Route exact path="/" render={() => (
+                        <MainPage/>
+                    )}/>
+                    <Route exact path="/posts/new" component={PostForm}/>
+                    <Route exact path="/comments/new" component={CommentForm}/>
+                    <Route exact path="/controls" component={Controls}/>
+                    <Route exact path="/:category/:post_id" render={(route) => {
+                        return (
+                            <PostDetail
+                                post={route.match.params['post_id']}/>
+                        );
+                    }}/>
+                    <Route exact path="/:category" render={(route) => (
+                        <div>
+                            Page 2
+                            <DeleteDialog
+                                category={route.match.params.category}
+                                id="894tuq4ut84ut8v4t8wun89g"/>
+                        </div>
+                    )}/>
+                </Switch>
                 <Footer/>
             </div>
         )
