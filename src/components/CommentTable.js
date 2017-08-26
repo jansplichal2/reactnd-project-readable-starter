@@ -13,7 +13,7 @@ class CommentTable extends Component {
     }
 
     render(){
-        const { comments } = this.props;
+        const { comments, post } = this.props;
 
         if(_.isEmpty(comments)){
             return <div></div>;
@@ -41,7 +41,11 @@ class CommentTable extends Component {
                             <td className="numberic_right_align">{comment.voteScore}</td>
                             <td>{comment.author}</td>
                             <td className="controls_column">
-                                <Controls/>
+                                <Controls objectId={post}
+                                          onVoteUp={(id) => (console.log('Vote up', id))}
+                                          onVoteDown={(id) => (console.log('Vote down', id))}
+                                          onEdit={(id) => (console.log('Edit', id))}
+                                          onDelete={(id) => (console.log('Delete', id))}/>
                             </td>
                         </tr>
                     );

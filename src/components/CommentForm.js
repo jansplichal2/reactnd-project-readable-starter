@@ -30,7 +30,7 @@ class CommentForm extends Component {
 
         return (
             <div className="row">
-                <div className="col-6">
+                <div className="col-12 col-md-6">
                     <form className="mt-3 mb-4" onSubmit={handleSubmit(this.submitForm)}>
 
                         <Field name="body" label="Comment" component={renderTextarea} rows="5"/>

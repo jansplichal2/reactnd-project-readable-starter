@@ -51,7 +51,11 @@ class PostDetail extends Component {
                 </div>
                 <div className="col-2">
                     <div className="float-right">
-                        <Controls size="large"/>
+                        <Controls size="large" objectId={id}
+                                  onVoteUp={(id) => (console.log('Vote up', id))}
+                                  onVoteDown={(id) => (console.log('Vote down', id))}
+                                  onEdit={(id) => (console.log('Edit', id))}
+                                  onDelete={(id) => (console.log('Delete', id))}/>
                     </div>
                 </div>
                 <div className="col-10 mt-5">
