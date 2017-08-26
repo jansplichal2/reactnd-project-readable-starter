@@ -4,6 +4,7 @@ import {formatTimestamp} from '../util/utils';
 import CommentTable from './CommentTable';
 import {Link} from 'react-router-dom';
 import Controls from './Controls';
+import {downVote, upVote} from '../actions/posts'
 
 class PostDetail extends Component {
     render() {
@@ -52,8 +53,8 @@ class PostDetail extends Component {
                 <div className="col-2">
                     <div className="float-right">
                         <Controls size="large" objectId={id}
-                                  onVoteUp={(id) => (console.log('Vote up', id))}
-                                  onVoteDown={(id) => (console.log('Vote down', id))}
+                                  onVoteUp={(id) => (this.props.upVote(id))}
+                                  onVoteDown={(id) => (this.props.downVote(id))}
                                   onEdit={(id) => (console.log('Edit', id))}
                                   onDelete={(id) => (console.log('Delete', id))}/>
                     </div>
@@ -70,13 +71,11 @@ class PostDetail extends Component {
 }
 
 const mapStateToProps = (state, props) => {
-    //console.log('State', state);
-    //console.log('Props', props);
     return {
         post: state.posts[props.post]
     }
 };
 
-export default connect(mapStateToProps)(PostDetail);
+export default connect(mapStateToProps, {downVote, upVote})(PostDetail);
 
 

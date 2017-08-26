@@ -9,5 +9,4 @@ export default function categories (state = {}, action) {
         default:
             return state;
     }
-    return state;
 }

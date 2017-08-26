@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCommentsForPost } from '../actions/comments';
+import { fetchCommentsForPost, upVote, downVote } from '../actions/comments';
 import PropTypes from 'prop-types';
 import {formatTimestamp} from '../util/utils';
 import _ from 'lodash';
@@ -41,9 +41,9 @@ class CommentTable extends Component {
                             <td className="numberic_right_align">{comment.voteScore}</td>
                             <td>{comment.author}</td>
                             <td className="controls_column">
-                                <Controls objectId={post}
-                                          onVoteUp={(id) => (console.log('Vote up', id))}
-                                          onVoteDown={(id) => (console.log('Vote down', id))}
+                                <Controls objectId={comment.id}
+                                          onVoteUp={(id) => (this.props.upVote(id))}
+                                          onVoteDown={(id) => (this.props.downVote(id))}
                                           onEdit={(id) => (console.log('Edit', id))}
                                           onDelete={(id) => (console.log('Delete', id))}/>
                             </td>
@@ -66,6 +66,6 @@ CommentTable.propTypes = {
 };
 
 
-export default connect(mapStateToProps, { fetchCommentsForPost })(CommentTable);
+export default connect(mapStateToProps, { fetchCommentsForPost, upVote, downVote })(CommentTable);
 
 

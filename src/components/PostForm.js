@@ -77,5 +77,4 @@ const mapStateToProps = (state) => ({
 
 const formWithRedux = reduxForm({form: 'PostForm', validate, initialValues: {category: 'react'}})(PostForm);
 
-export default connect(mapStateToProps, {createPost})
-(formWithRedux);
+export default connect(mapStateToProps, {createPost})(formWithRedux);

@@ -15,7 +15,7 @@ class CommentForm extends Component {
     submitForm(values) {
         const {post_id, category} = this.props.match.params;
 
-        this.props.createComment({...values,['parent']:post_id})
+        this.props.createComment({...values, parent:post_id})
             .then((comment) => this.props.history.push(`/${category}/${post_id}`));
     }
 
@@ -61,5 +61,4 @@ const validate = values => {
 
 const formWithRedux = reduxForm({form: 'CommentForm', validate})(CommentForm);
 
-export default connect(null, {createComment})
-(formWithRedux);
+export default connect(null, {createComment})(formWithRedux);

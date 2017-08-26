@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {fetchAllPosts} from '../actions/posts'
+import {fetchAllPosts, downVote, upVote} from '../actions/posts'
 import {formatTimestamp} from '../util/utils';
 import _ from 'lodash';
 import Controls from './Controls';
@@ -9,7 +9,7 @@ import Controls from './Controls';
 class PostTable extends Component {
 
     componentDidMount() {
-        this.props.load();
+        this.props.fetchAllPosts();
     }
 
     createLink(post) {
@@ -46,8 +46,8 @@ class PostTable extends Component {
                             <td className="numberic_right_align">5</td>
                             <td className="controls_column">
                                 <Controls objectId={post.id}
-                                          onVoteUp={(id) => (console.log('Vote up', id))}
-                                          onVoteDown={(id) => (console.log('Vote down', id))}
+                                          onVoteUp={(id) => (this.props.upVote(id))}
+                                          onVoteDown={(id) => (this.props.downVote(id))}
                                           onEdit={(id) => (console.log('Edit', id))}
                                           onDelete={(id) => (console.log('Delete', id))}/>
                             </td>
@@ -65,8 +65,5 @@ const mapStateToProps = (state) => ({
     posts: state.posts
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    load: () => dispatch(fetchAllPosts())
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostTable);
+export default connect(mapStateToProps, {fetchAllPosts, downVote, upVote})(PostTable);
