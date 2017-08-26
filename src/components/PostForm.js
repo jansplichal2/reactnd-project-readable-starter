@@ -65,7 +65,7 @@ const validate = values => {
     }
 
     if (!values.body) {
-        errors.body = "Body is requires";
+        errors.body = "Body is required";
     }
 
     return errors;

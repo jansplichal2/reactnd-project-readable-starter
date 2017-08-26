@@ -121,7 +121,7 @@ export const createPost = ({ body, title, category }) => {
   }).then(res => res.json());
 };
 
-export const createComment = ({ body, parentId }) => {
+export const createComment = (parentId, body) => {
     const newComment = {
         id: Utils.getUUID(),
         timestamp: Utils.getTimestamp(),

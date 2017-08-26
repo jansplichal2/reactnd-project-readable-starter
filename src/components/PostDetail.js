@@ -14,7 +14,7 @@ class PostDetail extends Component {
 
         const {
             title, author, body, timestamp,
-            category, voteScore
+            id,category, voteScore
         } = post;
 
         return (
@@ -55,10 +55,10 @@ class PostDetail extends Component {
                     </div>
                 </div>
                 <div className="col-10 mt-5">
-                    <Link className="btn btn-lg btn-outline-primary" to="/comments/new">New Comment ...</Link>
+                    <Link className="btn btn-lg btn-outline-primary" to={`/comments/new/${id}/${category}`}>New Comment ...</Link>
                 </div>
                 <div className="col-10 mt-5">
-                    <CommentTable post={post.id}/>
+                    <CommentTable post={id}/>
                 </div>
             </div>
         );

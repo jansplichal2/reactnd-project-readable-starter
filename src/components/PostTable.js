@@ -18,7 +18,6 @@ class PostTable extends Component {
 
     render() {
         const {posts} = this.props;
-        //console.log(posts);
 
         return (
             <table className="table">
