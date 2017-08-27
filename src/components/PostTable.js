@@ -88,7 +88,7 @@ class PostTable extends Component {
 
                 </tbody>
             </table>
-                <DeleteModal modalLabel="Delete Post Dialog"
+                <DeleteModal modalLabel="Post Table Delete Dialog"
                              isOpen={this.state.modalIsOpen}
                              title="Delete Post"
                              successBtnLabel="Delete Post"

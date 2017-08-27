@@ -4,9 +4,36 @@ import {formatTimestamp} from '../util/utils';
 import CommentTable from './CommentTable';
 import {Link} from 'react-router-dom';
 import Controls from './Controls';
-import {downVote, upVote} from '../actions/posts'
+import {downVote, upVote, removePost} from '../actions/posts'
+import DeleteModal from './DeleteDialog';
 
 class PostDetail extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            modalIsOpen: false,
+            postId: ''
+        };
+
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.deleteAndClose = this.deleteAndClose.bind(this);
+    }
+
+    deleteAndClose() {
+        this.props.removePost(this.state.postId)
+            .then(() => {this.closeModal(); this.props.history.push('/');});
+    }
+
+    openModal(id) {
+        this.setState({modalIsOpen: true, postId: id});
+    }
+
+    closeModal() {
+        this.setState({modalIsOpen: false, postId: ''});
+    }
+
     render() {
         const post = this.props.post;
         if (!post) {
@@ -56,7 +83,7 @@ class PostDetail extends Component {
                                   onVoteUp={(id) => (this.props.upVote(id))}
                                   onVoteDown={(id) => (this.props.downVote(id))}
                                   onEdit={(id) => (console.log('Edit', id))}
-                                  onDelete={(id) => (console.log('Delete', id))}/>
+                                  onDelete={(id) => (this.openModal(id))}/>
                     </div>
                 </div>
                 <div className="col-10 mt-5">
@@ -65,6 +92,14 @@ class PostDetail extends Component {
                 <div className="col-10 mt-5">
                     <CommentTable post={id}/>
                 </div>
+                <DeleteModal modalLabel="Post Detail Delete Dialog"
+                             isOpen={this.state.modalIsOpen}
+                             title="Delete Post"
+                             successBtnLabel="Delete Post"
+                             body={title}
+                             closeFn={this.closeModal}
+                             successFn={this.deleteAndClose}
+                />
             </div>
         );
     }
@@ -76,6 +111,6 @@ const mapStateToProps = (state, props) => {
     }
 };
 
-export default connect(mapStateToProps, {downVote, upVote})(PostDetail);
+export default connect(mapStateToProps, {downVote, upVote, removePost})(PostDetail);
 
 
