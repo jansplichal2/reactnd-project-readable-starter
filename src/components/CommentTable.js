@@ -40,7 +40,8 @@ class CommentTable extends Component {
     }
 
     render() {
-        const {comments} = this.props;
+        const comments = _.pickBy(this.props.comments, comment => comment.parentId === this.props.post);
+
         if (_.isEmpty(comments)) {
             return <div></div>;
         }

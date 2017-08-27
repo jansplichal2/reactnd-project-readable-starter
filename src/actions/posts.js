@@ -37,7 +37,10 @@ const getAllPosts = posts => ({
 export const fetchAllPosts = () => dispatch => (
     ReadableAPI
         .getAllPosts()
-        .then(posts => dispatch(getAllPosts(posts)))
+        .then(posts => {
+            dispatch(getAllPosts(posts));
+            return posts.filter(post => !post.deleted).map(post => post.id);
+        })
 );
 
 export const fetchPost = id => dispatch => (

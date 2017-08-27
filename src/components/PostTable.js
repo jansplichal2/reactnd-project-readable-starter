@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchAllPosts, downVote, upVote, removePost} from '../actions/posts'
+import { fetchCommentsForPost } from '../actions/comments';
 import {formatTimestamp} from '../util/utils';
 import _ from 'lodash';
 import Controls from './Controls';
@@ -20,6 +21,7 @@ class PostTable extends Component {
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.deleteAndClose = this.deleteAndClose.bind(this);
+        this.commentCount = this.commentCount.bind(this);
     }
 
     deleteAndClose() {
@@ -36,11 +38,19 @@ class PostTable extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchAllPosts();
+        this.props.fetchAllPosts().then(
+            posts => (posts.map(post => this.props.fetchCommentsForPost(post)))
+        );
     }
 
     createLink(post) {
         return `${post.category}/${post.id}`
+    }
+
+    commentCount(postId) {
+        //console.log(this.props.comments);
+        const commentNo = _.size(_.pickBy(this.props.comments, comment => comment.parentId === postId));
+        return commentNo;
     }
 
     render() {
@@ -74,7 +84,7 @@ class PostTable extends Component {
                             <td className="numberic_right_align">{post.voteScore}</td>
                             <td>{post.author}</td>
                             <td>{post.category}</td>
-                            <td className="numberic_right_align">5</td>
+                            <td className="numberic_right_align">{this.commentCount(post.id)}</td>
                             <td className="controls_column">
                                 <Controls objectId={post.id}
                                           onVoteUp={(id) => (this.props.upVote(id))}
@@ -102,8 +112,9 @@ class PostTable extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    posts: state.posts
+    posts: state.posts,
+    comments: state.comments
 });
 
 
-export default connect(mapStateToProps, {fetchAllPosts, downVote, upVote, removePost})(PostTable);
+export default connect(mapStateToProps, {fetchAllPosts, fetchCommentsForPost, downVote, upVote, removePost})(PostTable);
