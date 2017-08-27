@@ -15,6 +15,13 @@ function updatePost(post){
     }
 }
 
+function getPost(post){
+    return {
+        type: GET_POST,
+        post
+    }
+}
+
 const deletePost = (id) => {
     return {
         type: DELETE_POST,
@@ -31,6 +38,12 @@ export const fetchAllPosts = () => dispatch => (
     ReadableAPI
         .getAllPosts()
         .then(posts => dispatch(getAllPosts(posts)))
+);
+
+export const fetchPost = id => dispatch => (
+    ReadableAPI
+        .getPost(id)
+        .then(post => dispatch(getPost(post)))
 );
 
 export const createPost = values => dispatch => (

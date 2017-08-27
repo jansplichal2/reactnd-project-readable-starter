@@ -3,9 +3,10 @@ import {connect} from 'react-redux';
 import CommentTable from './CommentTable';
 import {Link} from 'react-router-dom';
 import Controls from './Controls';
-import {downVote, upVote, removePost} from '../actions/posts'
+import {downVote, upVote, removePost, fetchPost} from '../actions/posts'
 import DeleteModal from './DeleteDialog';
 import PostSummary from './PostSummary';
+import _ from 'lodash';
 
 class PostDetail extends Component {
     constructor(props) {
@@ -34,6 +35,10 @@ class PostDetail extends Component {
         this.setState({modalIsOpen: false, postId: ''});
     }
 
+    componentDidMount(){
+        this.props.fetchPost(this.props.match.params['post_id']);
+    }
+
     render() {
         const post = this.props.post;
         if (!post) {
@@ -50,7 +55,7 @@ class PostDetail extends Component {
                 <div className="col-6 col-sm-8">
                     <PostSummary title={title} author={author}
                                  timestamp={timestamp} voteScore={voteScore}
-                                 body={body} commentsNo={5}
+                                 body={body} commentsNo={this.props.commentNo}
                     />
                 </div>
                 <div className="col-6 col-sm-4 col-md-2">
@@ -82,11 +87,15 @@ class PostDetail extends Component {
 }
 
 const mapStateToProps = (state, props) => {
+    const postId = props.match.params['post_id'];
+    const comments = state.comments || {};
+    const commentNo = _.size(_.pickBy(comments, comment => comment.parentId === postId));
     return {
-        post: state.posts[props.match.params['post_id']]
+        post: state.posts[postId],
+        commentNo
     }
 };
 
-export default connect(mapStateToProps, {downVote, upVote, removePost})(PostDetail);
+export default connect(mapStateToProps, {fetchPost, downVote, upVote, removePost})(PostDetail);
 
 
