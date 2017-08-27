@@ -86,7 +86,7 @@ class CommentTable extends Component {
 
                 <DeleteModal modalLabel="Delete Comment Dialog"
                              isOpen={this.state.modalIsOpen}
-                             title="Delete Comment s"
+                             title="Delete Comment"
                              successBtnLabel="Delete Comment"
                              body={body}
                              closeFn={this.closeModal}

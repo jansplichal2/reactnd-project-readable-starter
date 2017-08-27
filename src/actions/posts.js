@@ -51,5 +51,5 @@ export const downVote = id => dispatch => (
 
 export const removePost = id => dispatch => (
     ReadableAPI.removePost(id)
-        .then(post => dispatch(deletePost(post)))
+        .then(post => dispatch(deletePost(post.id)))
 );

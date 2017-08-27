@@ -54,7 +54,7 @@ class PostDetail extends Component {
                     <div className="float-right">
                         <Controls size="large" objectId={id}
                                   onVoteUp={(id) => (this.props.upVote(id))}
-                                  onVoteDown={(id) => (this.props.down)}
+                                  onVoteDown={(id) => (this.props.downVote(id))}
                                   onEdit={(id) => (console.log('Edit', id))}
                                   onDelete={(id) => (console.log('Delete', id))}/>
                     </div>
