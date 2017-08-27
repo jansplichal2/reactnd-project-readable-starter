@@ -20,6 +20,7 @@ class PostForm extends Component {
     }
 
     componentDidMount(){
+        this.postTitle.focus();
         this.props.fetchAllCategories();
     }
 
@@ -34,7 +35,7 @@ class PostForm extends Component {
                 <div className="col-12 col-md-6">
                     <form className="mt-3 mb-4" onSubmit={handleSubmit(this.submitForm)}>
 
-                        <Field name="title" label="Title" component={renderField} type="text"/>
+                        <Field inputRef={el => this.postTitle = el} name="title" label="Title" component={renderField} type="text"/>
                         <Field name="body" label="Body" component={renderTextarea} rows="5"/>
 
                         <div className="form-group">

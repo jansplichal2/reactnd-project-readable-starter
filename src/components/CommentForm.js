@@ -19,6 +19,10 @@ class CommentForm extends Component {
             .then((comment) => this.props.history.push(`/${category}/${post_id}`));
     }
 
+    componentDidMount(){
+        this.commentBody.focus();
+    }
+
     render() {
         const {
             handleSubmit,
@@ -33,7 +37,7 @@ class CommentForm extends Component {
                 <div className="col-12 col-md-6">
                     <form className="mt-3 mb-4" onSubmit={handleSubmit(this.submitForm)}>
 
-                        <Field name="body" label="Comment" component={renderTextarea} rows="5"/>
+                        <Field inputRef={el => this.commentBody = el} name="body" label="Comment" component={renderTextarea} rows="5"/>
                         <button type="submit" disabled={submitting} className="btn btn-lg btn-outline-primary">Add
                             Comment
                         </button>

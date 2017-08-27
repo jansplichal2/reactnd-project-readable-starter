@@ -11,12 +11,15 @@ const styling = (touched, error) => {
 };
 
 
-export const renderField = ({
-                                input,
-                                label,
-                                type,
-                                meta: {touched, error}
-                            }) => {
+export const renderField = (props) => {
+
+    const {
+        input,
+            label,
+            type,
+            meta: {touched, error}
+    } = props;
+
     const showError = touched && error;
     const cls = styling(touched, error);
 
@@ -25,7 +28,7 @@ export const renderField = ({
             <label>
                 {label}
             </label>
-            <input {...input} className={cls} placeholder={label} type={type}/>
+            <input {...input} className={cls} ref={props.inputRef} placeholder={label} type={type}/>
             {showError &&
             <div className="invalid-feedback">
                 {error}
@@ -33,12 +36,14 @@ export const renderField = ({
         </div>);
 };
 
-export const renderTextarea = ({
-                                   input,
-                                   label,
-                                   rows,
-                                   meta: {touched, error}
-                               }) => {
+export const renderTextarea = (props) => {
+    const {
+        input,
+            label,
+            rows,
+            meta: {touched, error}
+    } = props;
+
     const showError = touched && error;
     const cls = styling(touched, error);
 
@@ -46,7 +51,7 @@ export const renderTextarea = ({
         <label>
             {label}
         </label>
-        <textarea {...input} className={cls} rows={rows}/>
+        <textarea {...input} className={cls} ref={props.inputRef} rows={rows}/>
         {showError &&
         <div className="invalid-feedback">
             {error}
