@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {formatTimestamp} from '../util/utils';
 import CommentTable from './CommentTable';
 import {Link} from 'react-router-dom';
 import Controls from './Controls';
 import {downVote, upVote, removePost} from '../actions/posts'
 import DeleteModal from './DeleteDialog';
+import PostSummary from './PostSummary';
 
 class PostDetail extends Component {
     constructor(props) {
@@ -47,37 +47,13 @@ class PostDetail extends Component {
 
         return (
             <div className="row justify-content-between my-2">
-                <div className="col-8">
-                    <div>
-                        <div className="">
-                            <span className="post-detail-header">Title: </span>
-                            <span className="post-detail-data">{title}</span>
-                        </div>
-                        <div className="">
-                            <span className="post-detail-header">Author: </span>
-                            <span className="post-detail-data">{author}</span>
-                        </div>
-                        <div className="">
-                            <span className="post-detail-header">Created: </span>
-                            <span className="post-detail-data">{formatTimestamp(timestamp)}</span>
-                        </div>
-                        <div className="">
-                            <span className="post-detail-header">Score: </span>
-                            <span className="post-detail-data">{voteScore}</span>
-                        </div>
-                        <div className="">
-                            <span className="post-detail-header">No of comments: </span>
-                            <span className="post-detail-data">5</span>
-                        </div>
-
-                        <div className="" style={{"marginTop": "12px"}}>
-                            <span className="post-detail-body">
-                                {body}
-                            </span>
-                        </div>
-                    </div>
+                <div className="col-6 col-sm-8">
+                    <PostSummary title={title} author={author}
+                                 timestamp={timestamp} voteScore={voteScore}
+                                 body={body} commentsNo={5}
+                    />
                 </div>
-                <div className="col-2">
+                <div className="col-6 col-sm-4 col-md-2">
                     <div className="float-right">
                         <Controls size="large" objectId={id}
                                   onVoteUp={(id) => (this.props.upVote(id))}

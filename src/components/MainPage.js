@@ -1,5 +1,4 @@
 import React from 'react';
-//import Edit from 'react-icons/lib/fa/edit'
 import CategoriesList from './CategoriesList';
 import PostTable from './PostTable';
 import { Link } from 'react-router-dom';
