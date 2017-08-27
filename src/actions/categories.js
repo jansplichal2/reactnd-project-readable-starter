@@ -2,7 +2,7 @@ import { GET_ALL_CATEGORIES } from './index';
 import * as ReadableAPI from '../util/readableAPI';
 
 
-export const getAllCategories = categories => ({
+const getAllCategories = categories => ({
     type: GET_ALL_CATEGORIES,
     categories
 });

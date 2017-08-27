@@ -4,6 +4,7 @@ import {Field, reduxForm} from 'redux-form';
 import {Link} from 'react-router-dom';
 import {renderField, renderTextarea} from '../util/forms';
 import {createPost} from '../actions/posts';
+import {fetchAllCategories} from '../actions/categories';
 import _ from 'lodash';
 
 class PostForm extends Component {
@@ -16,6 +17,10 @@ class PostForm extends Component {
         this.props.createPost(values).then(() => {
             this.props.history.push('/');
         });
+    }
+
+    componentDidMount(){
+        this.props.fetchAllCategories();
     }
 
     render() {
@@ -77,4 +82,4 @@ const mapStateToProps = (state) => ({
 
 const formWithRedux = reduxForm({form: 'PostForm', validate, initialValues: {category: 'react'}})(PostForm);
 
-export default connect(mapStateToProps, {createPost})(formWithRedux);
+export default connect(mapStateToProps, {createPost, fetchAllCategories})(formWithRedux);

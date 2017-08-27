@@ -9,12 +9,6 @@ const getCommentsForPost = (comments) => {
     };
 };
 
-export const fetchCommentsForPost = (postId) => (dispatch) => {
-    return ReadableAPI
-        .getPostComments(postId)
-        .then((comments) => dispatch(getCommentsForPost(comments)));
-};
-
 const newComment = (comment) => {
     return {
         type: ADD_NEW_COMMENT,
@@ -34,6 +28,12 @@ const deleteComment = (id) => {
         type: DELETE_COMMENT,
         id
     };
+};
+
+export const fetchCommentsForPost = (postId) => (dispatch) => {
+    return ReadableAPI
+        .getPostComments(postId)
+        .then((comments) => dispatch(getCommentsForPost(comments)));
 };
 
 export const createComment = ({body, parent}) => dispatch => {

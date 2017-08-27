@@ -1,14 +1,14 @@
 import { ADD_NEW_POST, GET_ALL_POSTS, GET_POST, DELETE_POST } from './index';
 import * as ReadableAPI from '../util/readableAPI';
 
-export function newPost(post){
+function newPost(post){
     return {
         type: ADD_NEW_POST,
         post
     }
 }
 
-export function updatePost(post){
+function updatePost(post){
     return {
         type: GET_POST,
         post
@@ -22,7 +22,7 @@ const deletePost = (id) => {
     };
 };
 
-export const getAllPosts = posts => ({
+const getAllPosts = posts => ({
     type: GET_ALL_POSTS,
     posts
 });
