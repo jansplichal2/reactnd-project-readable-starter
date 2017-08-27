@@ -5,20 +5,7 @@ import PropTypes from 'prop-types';
 import {formatTimestamp} from '../util/utils';
 import _ from 'lodash';
 import Controls from './Controls';
-import Modal from 'react-modal';
-
-const customStyles = {
-    content: {
-        top: '40%',
-        left: '40%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        padding: '0px'
-    }
-};
-
+import DeleteModal from './DeleteDialog';
 
 class CommentTable extends Component {
     constructor(props) {
@@ -59,6 +46,7 @@ class CommentTable extends Component {
         }
 
         const commentId = this.state.commentId;
+        const body = comments[commentId] ? comments[commentId].body : '';
 
         return (
             <div>
@@ -95,34 +83,15 @@ class CommentTable extends Component {
 
                     </tbody>
                 </table>
-                <Modal
-                    isOpen={this.state.modalIsOpen}
-                    onRequestClose={this.closeModal}
-                    contentLabel="Delete Comment Dialog"
-                    style={customStyles}
-                >
-                    <div style={{marginRight: '10px', marginTop: '3px'}}>
-                        <button type="button" className="close" onClick={this.closeModal}>
-                            <span>&times;</span>
-                        </button>
-                    </div>
 
-                    <div className="content-group m-4">
-                        <h3 className="mb-5">Delete Comment</h3>
-                        <hr/>
-                        Do you wish to delete comment: <br/>
-                        {commentId && comments[commentId] ? _.truncate(comments[commentId].body, {length: 35}) : ''}
-                        <hr/>
-                        <button type="submit" onClick={this.deleteAndClose}
-                                className="btn btn-lg btn-outline-primary">Delete
-                            Comment
-                        </button>
-                        <button onClick={this.closeModal}
-                                className="ml-2 btn btn-lg btn-outline-danger">Cancel
-                        </button>
-                    </div>
-
-                </Modal>
+                <DeleteModal modalLabel="Delete Comment Dialog"
+                             isOpen={this.state.modalIsOpen}
+                             title="Delete Comment s"
+                             successBtnLabel="Delete Comment"
+                             body={body}
+                             closeFn={this.closeModal}
+                             successFn={this.deleteAndClose}
+                />
             </div>
         );
     }
