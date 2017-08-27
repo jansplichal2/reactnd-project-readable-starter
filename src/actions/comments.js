@@ -1,4 +1,4 @@
-import {ADD_NEW_COMMENT, GET_COMMENTS_FOR_POST, GET_COMMENT} from './index';
+import {ADD_NEW_COMMENT, GET_COMMENT, GET_COMMENTS_FOR_POST, DELETE_COMMENT} from './index';
 import * as ReadableAPI from '../util/readableAPI';
 
 
@@ -22,17 +22,24 @@ const newComment = (comment) => {
     };
 };
 
-function updateComment(comment){
+function updateComment(comment) {
     return {
         type: GET_COMMENT,
         comment
     }
 }
 
+const deleteComment = (id) => {
+    return {
+        type: DELETE_COMMENT,
+        id
+    };
+};
+
 export const createComment = ({body, parent}) => dispatch => {
     return ReadableAPI
-            .createComment(parent, body)
-            .then(comment => dispatch(newComment(comment)));
+        .createComment(parent, body)
+        .then(comment => dispatch(newComment(comment)));
 };
 
 export const upVote = id => dispatch => (
@@ -45,3 +52,7 @@ export const downVote = id => dispatch => (
         .then(comment => dispatch(updateComment(comment)))
 );
 
+export const removeComment = id => dispatch => (
+    ReadableAPI.removeComment(id)
+        .then(comment => dispatch(deleteComment(comment.id)))
+);

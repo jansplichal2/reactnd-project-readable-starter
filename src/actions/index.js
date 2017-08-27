@@ -14,7 +14,6 @@ export const GET_COMMENT = 'GET_COMMENT';
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
 export const ADD_COMMENT_ERROR = 'ADD_COMMENT_ERROR';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
-export const DELETE_COMMENT_ERROR = 'DELETE_COMMENT_ERROR';
 
 // Constants for categories
 export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';

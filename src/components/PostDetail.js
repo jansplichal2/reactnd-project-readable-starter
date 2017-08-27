@@ -54,7 +54,7 @@ class PostDetail extends Component {
                     <div className="float-right">
                         <Controls size="large" objectId={id}
                                   onVoteUp={(id) => (this.props.upVote(id))}
-                                  onVoteDown={(id) => (this.props.downVote(id))}
+                                  onVoteDown={(id) => (this.props.down)}
                                   onEdit={(id) => (console.log('Edit', id))}
                                   onDelete={(id) => (console.log('Delete', id))}/>
                     </div>
@@ -72,7 +72,7 @@ class PostDetail extends Component {
 
 const mapStateToProps = (state, props) => {
     return {
-        post: state.posts[props.post]
+        post: state.posts[props.match.params['post_id']]
     }
 };
 

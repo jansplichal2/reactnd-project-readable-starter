@@ -1,37 +1,50 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Modal from 'react-modal';
+import _ from 'lodash';
 
-
-class DeleteDialog extends Component {
-    state = {
-        modalOpen: false
-    };
-
-    constructor(props) {
-        super(props);
-        this.closeDialog = this.closeDialog.bind(this);
+const customStyles = {
+    content: {
+        top: '40%',
+        left: '40%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        padding: '0px'
     }
+};
 
-    openDialog() {
-        this.setState({modalOpen: true});
-    }
-
-    closeDialog() {
-        this.setState({modalOpen: false});
-    }
-
-    render() {
-        return (
-            <div>
-                <Modal
-                    contentLabel="Remove"
-                    onRequestClose={this.closeDialog}
-                    isOpen={this.state.modalOpen}>
-                    <button onClick={this.closeDialog}>Remove</button>
-                </Modal>
+const DeleteDialog = ({ isOpen, modalLabel, successBtnLabel, body, successFn, closeFn}) => {
+    return (
+        <Modal
+            isOpen={isOpen}
+            onRequestClose={closeFn}
+            contentLabel={modalLabel}
+            style={customStyles}
+        >
+            <div style={{marginRight: '10px', marginTop: '3px'}}>
+                <button type="button" className="close" onClick={closeFn}>
+                    <span>&times;</span>
+                </button>
             </div>
-        );
-    }
-}
+
+            <div className="content-group m-4">
+                <h3 className="mb-5">Delete Comment</h3>
+                <hr/>
+                Do you wish to delete: <br/>
+                { body ? _.truncate(body, {length: 35}) : ''}
+                <hr/>
+                <button type="submit" onClick={successFn}
+                        className="btn btn-lg btn-outline-primary">{successBtnLabel}
+                </button>
+                <button onClick={closeFn}
+                        className="ml-2 btn btn-lg btn-outline-danger">Cancel
+                </button>
+            </div>
+
+        </Modal>
+    );
+
+};
 
 export default DeleteDialog;

@@ -1,4 +1,4 @@
-import { ADD_NEW_POST, GET_ALL_POSTS, GET_POST } from './index';
+import { ADD_NEW_POST, GET_ALL_POSTS, GET_POST, DELETE_POST } from './index';
 import * as ReadableAPI from '../util/readableAPI';
 
 export function newPost(post){
@@ -14,6 +14,13 @@ export function updatePost(post){
         post
     }
 }
+
+const deletePost = (id) => {
+    return {
+        type: DELETE_POST,
+        id
+    };
+};
 
 export const getAllPosts = posts => ({
     type: GET_ALL_POSTS,
@@ -40,4 +47,9 @@ export const upVote = id => dispatch => (
 export const downVote = id => dispatch => (
     ReadableAPI.downVotePost(id)
         .then(post => dispatch(updatePost(post)))
+);
+
+export const removePost = id => dispatch => (
+    ReadableAPI.removePost(id)
+        .then(post => dispatch(deletePost(post)))
 );
