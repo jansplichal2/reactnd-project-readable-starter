@@ -89,7 +89,7 @@ class PostTable extends Component {
                                 <Controls objectId={post.id}
                                           onVoteUp={(id) => (this.props.upVote(id))}
                                           onVoteDown={(id) => (this.props.downVote(id))}
-                                          onEdit={(id) => (console.log('Edit', id))}
+                                          onEdit={(id) => (this.props.history.push(`/posts/edit/${id}`))}
                                           onDelete={(id) => (this.openModal(id))}/>
                             </td>
                         </tr>

@@ -141,8 +141,8 @@ export const createComment = (parentId, body) => {
 };
 
 
-export const editPost = ( {id, title, body} ) => {
-    const post = { title, body };
+export const editPost = ( {id, title, body, category} ) => {
+    const post = { title, body, category };
 
     return fetch(`${api}/posts/${id}`, {
         method: 'PUT',
@@ -151,7 +151,7 @@ export const editPost = ( {id, title, body} ) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(post)
-    })
+    }).then(res => res.json());
 };
 
 export const editComment = ( {id, body} ) => {
@@ -164,5 +164,5 @@ export const editComment = ( {id, body} ) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(comment)
-    })
+    }).then(res => res.json());
 };

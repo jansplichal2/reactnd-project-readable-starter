@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
 import {Link} from 'react-router-dom';
 import {renderField, renderTextarea} from '../util/forms';
-import {createPost} from '../actions/posts';
+import {createPost, editPost, fetchPost} from '../actions/posts';
 import {fetchAllCategories} from '../actions/categories';
 import _ from 'lodash';
 
@@ -14,12 +14,28 @@ class PostForm extends Component {
     }
 
     submitForm(values) {
-        this.props.createPost(values).then(() => {
-            this.props.history.push('/');
-        });
+        if(this.isNewPost){
+            this.props.createPost(values).then(() => {
+                this.props.history.push('/');
+            });
+        } else {
+            this.props.editPost(values).then(() => {
+                this.props.history.push('/');
+            });
+        }
+
     }
 
     componentDidMount(){
+        const postId = this.props.match.params['post_id'];
+
+        if(postId){
+            this.isNewPost = false;
+            this.props.fetchPost(postId);
+        } else {
+            this.isNewPost = true;
+        }
+
         this.postTitle.focus();
         this.props.fetchAllCategories();
     }
@@ -48,8 +64,8 @@ class PostForm extends Component {
                                 )}
                             </Field>
                         </div>
-                        <button type="submit" disabled={submitting} className="btn btn-lg btn-outline-primary">Add
-                            Post
+                        <button type="submit" disabled={submitting} className="btn btn-lg btn-outline-primary">
+                            {this.isNewPost ? 'Add Post' : 'Edit Post'}
                         </button>
                         <Link to="/"
                               className="ml-2 btn btn-lg btn-outline-danger">Cancel
@@ -77,10 +93,16 @@ const validate = values => {
     return errors;
 };
 
-const mapStateToProps = (state) => ({
-    categories: state.categories
-});
+const mapStateToProps = (state, props) => {
+    const postId = props.match.params['post_id'];
+    const initialValues = postId ? state.posts[postId] : {category: 'react'};
 
-const formWithRedux = reduxForm({form: 'PostForm', validate, initialValues: {category: 'react'}})(PostForm);
+    return {
+        categories: state.categories,
+        initialValues: initialValues,
+    }
+};
 
-export default connect(mapStateToProps, {createPost, fetchAllCategories})(formWithRedux);
+const formWithRedux = reduxForm({form: 'PostForm', validate})(PostForm);
+
+export default connect(mapStateToProps, {createPost, editPost, fetchPost, fetchAllCategories})(formWithRedux);

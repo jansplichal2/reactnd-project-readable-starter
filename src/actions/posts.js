@@ -1,21 +1,21 @@
-import { ADD_NEW_POST, GET_ALL_POSTS, GET_POST, DELETE_POST } from './index';
+import {ADD_NEW_POST, DELETE_POST, GET_ALL_POSTS, GET_POST} from './index';
 import * as ReadableAPI from '../util/readableAPI';
 
-function newPost(post){
+function newPost(post) {
     return {
         type: ADD_NEW_POST,
         post
     }
 }
 
-function updatePost(post){
+function updatePost(post) {
     return {
         type: GET_POST,
         post
     }
 }
 
-function getPost(post){
+function getPost(post) {
     return {
         type: GET_POST,
         post
@@ -50,14 +50,14 @@ export const fetchPost = id => dispatch => (
 );
 
 export const createPost = values => dispatch => (
-  ReadableAPI
-      .createPost(values)
-      .then(post => dispatch(newPost(post)))
+    ReadableAPI
+        .createPost(values)
+        .then(post => dispatch(newPost(post)))
 );
 
 export const upVote = id => dispatch => (
-  ReadableAPI.upVotePost(id)
-      .then(post => dispatch(updatePost(post)))
+    ReadableAPI.upVotePost(id)
+        .then(post => dispatch(updatePost(post)))
 );
 
 export const downVote = id => dispatch => (
@@ -68,4 +68,9 @@ export const downVote = id => dispatch => (
 export const removePost = id => dispatch => (
     ReadableAPI.removePost(id)
         .then(post => dispatch(deletePost(post.id)))
+);
+
+export const editPost = values => dispatch => (
+    ReadableAPI.editPost(values)
+        .then(post => dispatch(updatePost(post)))
 );
