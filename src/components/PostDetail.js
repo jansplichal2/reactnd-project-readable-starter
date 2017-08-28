@@ -63,15 +63,15 @@ class PostDetail extends Component {
                         <Controls size="large" objectId={id}
                                   onVoteUp={(id) => (this.props.upVote(id))}
                                   onVoteDown={(id) => (this.props.downVote(id))}
-                                  onEdit={(id) => (console.log('Edit', id))}
+                                  onEdit={(id) => (this.props.history.push(`/posts/edit/${id}`))}
                                   onDelete={(id) => (this.openModal(id))}/>
                     </div>
                 </div>
                 <div className="col-10 mt-5">
-                    <Link className="btn btn-lg btn-outline-primary" to={`/comments/new/${id}/${category}`}>New Comment ...</Link>
+                    <Link className="btn btn-lg btn-outline-primary" to={`/comments/new/${category}/${id}`}>New Comment ...</Link>
                 </div>
                 <div className="col-10 mt-5">
-                    <CommentTable post={id}/>
+                    <CommentTable post={id} onCommentEdit={(commentId) => (this.props.history.push(`/comments/edit/${category}/${commentId}`))}/>
                 </div>
                 <DeleteModal modalLabel="Post Detail Delete Dialog"
                              isOpen={this.state.modalIsOpen}

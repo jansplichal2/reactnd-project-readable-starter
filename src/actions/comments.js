@@ -56,3 +56,14 @@ export const removeComment = id => dispatch => (
     ReadableAPI.removeComment(id)
         .then(comment => dispatch(deleteComment(comment.id)))
 );
+
+export const editComment = values => dispatch => (
+    ReadableAPI.editComment(values)
+        .then(comment => dispatch(updateComment(comment)))
+);
+
+export const fetchComment = id => dispatch => (
+    ReadableAPI
+        .getComment(id)
+        .then(comment => dispatch(updateComment(comment)))
+);

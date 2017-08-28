@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {downVote, fetchCommentsForPost, removeComment, upVote} from '../actions/comments';
+import {downVote, fetchCommentsForPost, removeComment, editComment, upVote} from '../actions/comments';
 import PropTypes from 'prop-types';
 import {formatTimestamp} from '../util/utils';
 import _ from 'lodash';
@@ -75,7 +75,7 @@ class CommentTable extends Component {
                                     <Controls objectId={comment.id}
                                               onVoteUp={(id) => (this.props.upVote(id))}
                                               onVoteDown={(id) => (this.props.downVote(id))}
-                                              onEdit={(id) => (console.log('Edit', id))}
+                                              onEdit={(id) => (this.props.onCommentEdit(id))}
                                               onDelete={(id) => (this.openModal(id))}/>
                                 </td>
                             </tr>
@@ -103,12 +103,13 @@ const mapStateToProps = (state) => ({
 });
 
 CommentTable.propTypes = {
-    post: PropTypes.string.isRequired
+    post: PropTypes.string.isRequired,
+    onCommentEdit: PropTypes.func
 };
 
 
 export default connect(mapStateToProps, {
-    fetchCommentsForPost,
+    fetchCommentsForPost, editComment,
     upVote, downVote, removeComment
 })(CommentTable);
 

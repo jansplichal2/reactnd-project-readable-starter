@@ -17,7 +17,8 @@ class Readable extends Component {
                     <Route exact path="/" component={MainPage}/>
                     <Route exact path="/posts/new" component={PostForm}/>
                     <Route exact path="/posts/edit/:post_id" component={PostForm}/>
-                    <Route exact path="/comments/new/:post_id/:category" component={CommentForm}/>
+                    <Route exact path="/comments/new/:category/:post_id" component={CommentForm}/>
+                    <Route exact path="/comments/edit/:category/:comment_id" component={CommentForm}/>
                     <Route exact path="/:category/:post_id" component={PostDetail}/>
                     <Route exact path="/:category" render={(route) => (
                         <div>
