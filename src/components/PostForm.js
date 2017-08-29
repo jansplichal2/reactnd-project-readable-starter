@@ -15,12 +15,14 @@ class PostForm extends Component {
 
     submitForm(values) {
         if(this.isNewPost){
-            this.props.createPost(values).then(() => {
-                this.props.history.push('/');
+            this.props.createPost(values).then(data => {
+                const { category, id} = data.post;
+                this.props.history.push(`/${category}/${id}`);
             });
         } else {
-            this.props.editPost(values).then(() => {
-                this.props.history.push('/');
+            this.props.editPost(values).then(data => {
+                const { category, id} = data.post;
+                this.props.history.push(`/${category}/${id}`);
             });
         }
 

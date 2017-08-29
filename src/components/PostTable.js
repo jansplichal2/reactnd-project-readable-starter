@@ -56,6 +56,10 @@ class PostTable extends Component {
     render() {
         const {posts} = this.props;
 
+        if(_.isEmpty(posts)){
+            return <div>No posts available</div>
+        }
+
         const postId = this.state.postId;
         const body = posts[postId] ? posts[postId].title : '';
 
@@ -111,10 +115,16 @@ class PostTable extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    posts: state.posts,
-    comments: state.comments
-});
+const mapStateToProps = (state, props) => {
+    const category = props.category;
+    const posts = category ?
+        _.pickBy(state.posts, post => post.category === category) : state.posts;
+
+    return {
+        posts,
+        comments: state.comments
+    }
+};
 
 
 export default connect(mapStateToProps, {fetchAllPosts, fetchCommentsForPost, downVote, upVote, removePost})(PostTable);

@@ -20,11 +20,10 @@ class Readable extends Component {
                     <Route exact path="/comments/new/:category/:post_id" component={CommentForm}/>
                     <Route exact path="/comments/edit/:category/:comment_id" component={CommentForm}/>
                     <Route exact path="/:category/:post_id" component={PostDetail}/>
-                    <Route exact path="/:category" render={(route) => (
-                        <div>
-                            Filter by category
-                        </div>
-                    )}/>
+                    <Route exact path="/:category" render={(route)=> {
+                        // Using the key="2" to force the rerendering of MainPage
+                        return <MainPage match={route.match} history={route.history} key="2"/>;
+                    }}/>
                 </Switch>
                 <Footer/>
             </div>
