@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {downVote, fetchCommentsForPost, removeComment, editComment, upVote} from '../actions/comments';
 import PropTypes from 'prop-types';
-import {formatTimestamp} from '../util/utils';
+import {formatTimestamp, stateMap} from '../util/utils';
 import _ from 'lodash';
 import Controls from './Controls';
 import DeleteModal from './DeleteDialog';
@@ -13,7 +13,9 @@ class CommentTable extends Component {
 
         this.state = {
             modalIsOpen: false,
-            commentId: ''
+            commentId: '',
+            sortName: 'timestamp',
+            sortOrder: 'desc'
         };
 
         this.openModal = this.openModal.bind(this);
@@ -39,12 +41,31 @@ class CommentTable extends Component {
         this.setState({modalIsOpen: false, commentId: ''});
     }
 
+    isSortActive(column, order) {
+        const {sortName, sortOrder} = this.state;
+        const isActive = column === sortName && order === sortOrder;
+        return isActive ? 'active' : '';
+    }
+
+    changeSort(column){
+        return () => {
+            this.setState((prevState) => {
+                return {
+                    sortName: column,
+                    sortOrder: prevState.sortName === column? stateMap[prevState.sortOrder] : 'desc'
+                };
+            });
+        }
+    }
+
     render() {
         const comments = _.pickBy(this.props.comments, comment => comment.parentId === this.props.post);
 
         if (_.isEmpty(comments)) {
             return <div></div>;
         }
+
+        const sortedComments = _.orderBy(comments, this.state.sortName, this.state.sortOrder);
 
         const commentId = this.state.commentId;
         const body = comments[commentId] ? comments[commentId].body : '';
@@ -55,16 +76,21 @@ class CommentTable extends Component {
                     <thead className="thead-inverse">
                     <tr>
                         <th>Text</th>
-                        <th className="sortable-table-header">Created&nbsp;<span
-                            className="sorting-arrows">&uarr;&darr;</span></th>
-                        <th className="sortable-table-header">Score&nbsp;<span
-                            className="sorting-arrows">&uarr;&darr;</span></th>
+                        <th onClick={this.changeSort('timestamp')} className="sortable-table-header">Created&nbsp;<span
+                            className="sorting-arrows"><span
+                            className={this.isSortActive('timestamp', 'asc')}>&uarr;</span><span
+                            className={this.isSortActive('timestamp', 'desc')}>&darr;</span></span>
+                        </th>
+                        <th onClick={this.changeSort('voteScore')} className="sortable-table-header">Score&nbsp;<span
+                            className="sorting-arrows"><span className={this.isSortActive('voteScore', 'asc')}>&uarr;</span><span
+                            className={this.isSortActive('voteScore', 'desc')}>&darr;</span></span>
+                        </th>
                         <th>Author</th>
                         <th>Control</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {_.map(comments, (comment) => {
+                    {_.map(sortedComments, (comment) => {
                         return (
                             <tr key={comment.id}>
                                 <td>{comment.body}</td>

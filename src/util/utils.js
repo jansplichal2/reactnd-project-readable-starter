@@ -8,3 +8,8 @@ export const formatTimestamp = (timestamp) => {
     return date.toLocaleString();
 };
 
+export const stateMap = {
+    'desc':'asc',
+    'asc': 'desc'
+};
+
