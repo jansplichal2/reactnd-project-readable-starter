@@ -1,4 +1,4 @@
-import { GET_ALL_CATEGORIES } from './index';
+import {GET_ALL_CATEGORIES} from './index';
 import * as ReadableAPI from '../util/readableAPI';
 
 

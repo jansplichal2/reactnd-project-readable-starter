@@ -15,9 +15,9 @@ export const renderField = (props) => {
 
     const {
         input,
-            label,
-            type,
-            meta: {touched, error}
+        label,
+        type,
+        meta: {touched, error}
     } = props;
 
     const showError = touched && error;
@@ -39,9 +39,9 @@ export const renderField = (props) => {
 export const renderTextarea = (props) => {
     const {
         input,
-            label,
-            rows,
-            meta: {touched, error}
+        label,
+        rows,
+        meta: {touched, error}
     } = props;
 
     const showError = touched && error;

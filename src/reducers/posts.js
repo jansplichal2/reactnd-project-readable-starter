@@ -1,8 +1,8 @@
 import _ from 'lodash';
-import { GET_ALL_POSTS, ADD_NEW_POST, GET_POST, DELETE_POST } from '../actions';
+import {GET_ALL_POSTS, ADD_NEW_POST, GET_POST, DELETE_POST} from '../actions';
 
-function posts (state = {}, action) {
-    switch (action.type){
+function posts(state = {}, action) {
+    switch (action.type) {
         case GET_ALL_POSTS:
             const activePosts = action.posts.filter(post => !post.deleted);
             const posts = _.mapKeys(activePosts, 'id');

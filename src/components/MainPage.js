@@ -4,14 +4,14 @@ import PostTable from './PostTable';
 import {Link} from 'react-router-dom';
 
 class MainPage extends Component {
-    componentWillMount(){
+    componentWillMount() {
         this.category = this.props.match.params['category'];
         this.isCategoryUsed = !!this.category;
     }
 
     renderCategories() {
         if (this.isCategoryUsed) {
-            return(
+            return (
                 <h5 className="col-12">Filter by: {this.category}</h5>
             );
         } else {
@@ -21,13 +21,13 @@ class MainPage extends Component {
         }
     }
 
-    renderButtonPositioning(){
+    renderButtonPositioning() {
         let styles = 'col-12 my-4';
         styles += this.isCategoryUsed ? ' mb-2' : ' col-md-9 col-lg-10 ml-auto';
         return styles;
     }
 
-    renderTablePositioning(){
+    renderTablePositioning() {
         return `col-12 ${this.isCategoryUsed ? '' : 'col-md-9 col-lg-10'}`;
     }
 

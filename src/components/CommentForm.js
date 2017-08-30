@@ -16,7 +16,7 @@ class CommentForm extends Component {
         const {category} = this.props.match.params;
         const {parentId} = this.props;
 
-        if(this.isNewComment) {
+        if (this.isNewComment) {
             this.props.createComment({...values, parent: parentId})
                 .then((comment) => this.props.history.push(`/${category}/${parentId}`));
         } else {
@@ -25,10 +25,10 @@ class CommentForm extends Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const commentId = this.props.match.params['comment_id'];
 
-        if(commentId){
+        if (commentId) {
             this.isNewComment = false;
             this.props.fetchComment(commentId);
         } else {
@@ -53,7 +53,8 @@ class CommentForm extends Component {
                 <div className="col-12 col-md-6">
                     <form className="mt-3 mb-4" onSubmit={handleSubmit(this.submitForm)}>
 
-                        <Field inputRef={el => this.commentBody = el} name="body" label="Comment" component={renderTextarea} rows="5"/>
+                        <Field inputRef={el => this.commentBody = el} name="body" label="Comment"
+                               component={renderTextarea} rows="5"/>
                         <button type="submit" disabled={submitting} className="btn btn-lg btn-outline-primary">
                             {this.isNewComment ? 'Add Comment' : 'Edit Comment'}
                         </button>

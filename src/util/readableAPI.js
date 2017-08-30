@@ -14,15 +14,15 @@ const headers = {
 };
 
 export const getAllCategories = () =>
-    fetch(`${api}/categories`, { headers })
+    fetch(`${api}/categories`, {headers})
         .then(res => res.json());
 
 export const getAllPosts = () =>
-    fetch(`${api}/posts`, { headers })
+    fetch(`${api}/posts`, {headers})
         .then(res => res.json());
 
 export const getCategoryPosts = (category) =>
-    fetch(`${api}/${category}/posts`, { headers })
+    fetch(`${api}/${category}/posts`, {headers})
         .then(res => res.json());
 
 export const getPost = (id) =>
@@ -30,11 +30,11 @@ export const getPost = (id) =>
         .then(res => res.json());
 
 export const getPostComments = (id) =>
-    fetch(`${api}/posts/${id}/comments`, { headers })
+    fetch(`${api}/posts/${id}/comments`, {headers})
         .then(res => res.json());
 
 export const getComment = (id) =>
-    fetch(`${api}/comments/${id}`, { headers })
+    fetch(`${api}/comments/${id}`, {headers})
         .then(res => res.json());
 
 export const removeComment = (id) =>
@@ -58,17 +58,17 @@ export const removePost = (id) =>
         .then(res => res.json());
 
 const voteOnComment = (id, option) => {
-  return fetch(`${api}/comments/${id}`, {
-      method: 'POST',
-      headers: {
-          ...headers,
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-          option
-      })
-  })
-      .then(res => res.json());
+    return fetch(`${api}/comments/${id}`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            option
+        })
+    })
+        .then(res => res.json());
 };
 
 const voteOnPost = (id, option) => {
@@ -101,24 +101,24 @@ export const downVotePost = (id) => {
     return voteOnPost(id, "downVote");
 };
 
-export const createPost = ({ body, title, category }) => {
-  const newPost = {
-      id: Utils.getUUID(),
-      timestamp: Utils.getTimestamp(),
-      body,
-      author: token,
-      title,
-      category
-  };
+export const createPost = ({body, title, category}) => {
+    const newPost = {
+        id: Utils.getUUID(),
+        timestamp: Utils.getTimestamp(),
+        body,
+        author: token,
+        title,
+        category
+    };
 
-  return fetch(`${api}/posts`, {
-      method: 'POST',
-      headers: {
-          ...headers,
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newPost)
-  }).then(res => res.json());
+    return fetch(`${api}/posts`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newPost)
+    }).then(res => res.json());
 };
 
 export const createComment = (parentId, body) => {
@@ -141,8 +141,8 @@ export const createComment = (parentId, body) => {
 };
 
 
-export const editPost = ( {id, title, body, category} ) => {
-    const post = { title, body, category };
+export const editPost = ({id, title, body, category}) => {
+    const post = {title, body, category};
 
     return fetch(`${api}/posts/${id}`, {
         method: 'PUT',
@@ -154,8 +154,8 @@ export const editPost = ( {id, title, body, category} ) => {
     }).then(res => res.json());
 };
 
-export const editComment = ( {id, body} ) => {
-    const comment = { body, timestamp: Utils.getTimestamp() };
+export const editComment = ({id, body}) => {
+    const comment = {body, timestamp: Utils.getTimestamp()};
 
     return fetch(`${api}/comments/${id}`, {
         method: 'PUT',

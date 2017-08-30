@@ -24,7 +24,10 @@ class PostDetail extends Component {
 
     deleteAndClose() {
         this.props.removePost(this.state.postId)
-            .then(() => {this.closeModal(); this.props.history.push('/');});
+            .then(() => {
+                this.closeModal();
+                this.props.history.push('/');
+            });
     }
 
     openModal(id) {
@@ -35,7 +38,7 @@ class PostDetail extends Component {
         this.setState({modalIsOpen: false, postId: ''});
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.fetchPost(this.props.match.params['post_id']);
     }
 
@@ -47,7 +50,7 @@ class PostDetail extends Component {
 
         const {
             title, author, body, timestamp,
-            id,category, voteScore
+            id, category, voteScore
         } = post;
 
         return (
@@ -68,10 +71,12 @@ class PostDetail extends Component {
                     </div>
                 </div>
                 <div className="col-10 mt-5">
-                    <Link className="btn btn-lg btn-outline-primary" to={`/comments/new/${category}/${id}`}>New Comment ...</Link>
+                    <Link className="btn btn-lg btn-outline-primary" to={`/comments/new/${category}/${id}`}>New Comment
+                        ...</Link>
                 </div>
                 <div className="col-10 mt-5">
-                    <CommentTable post={id} onCommentEdit={(commentId) => (this.props.history.push(`/comments/edit/${category}/${commentId}`))}/>
+                    <CommentTable post={id}
+                                  onCommentEdit={(commentId) => (this.props.history.push(`/comments/edit/${category}/${commentId}`))}/>
                 </div>
                 <DeleteModal modalLabel="Post Detail Delete Dialog"
                              isOpen={this.state.modalIsOpen}

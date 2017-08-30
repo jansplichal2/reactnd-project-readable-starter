@@ -9,7 +9,7 @@ export const formatTimestamp = (timestamp) => {
 };
 
 export const stateMap = {
-    'desc':'asc',
+    'desc': 'asc',
     'asc': 'desc'
 };
 

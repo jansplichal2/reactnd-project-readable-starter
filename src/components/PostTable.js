@@ -61,13 +61,13 @@ class PostTable extends Component {
         return isActive ? 'active' : '';
     }
 
-    changeSort(column){
+    changeSort(column) {
         return () => {
             this.setState((prevState) => {
-               return {
-                 sortName: column,
-                 sortOrder: prevState.sortName === column? stateMap[prevState.sortOrder] : 'desc'
-               };
+                return {
+                    sortName: column,
+                    sortOrder: prevState.sortName === column ? stateMap[prevState.sortOrder] : 'desc'
+                };
             });
         }
     }
@@ -95,7 +95,8 @@ class PostTable extends Component {
                             className={this.isSortActive('timestamp', 'desc')}>&darr;</span></span>
                         </th>
                         <th onClick={this.changeSort('voteScore')} className="sortable-table-header">Score&nbsp;<span
-                            className="sorting-arrows"><span className={this.isSortActive('voteScore', 'asc')}>&uarr;</span><span
+                            className="sorting-arrows"><span
+                            className={this.isSortActive('voteScore', 'asc')}>&uarr;</span><span
                             className={this.isSortActive('voteScore', 'desc')}>&darr;</span></span>
                         </th>
                         <th>Author</th>

@@ -33,15 +33,15 @@
 }
 
 .sortable-table-header {
-    cursor: pointer ;
+    cursor: pointer;
 }
 
-.readable-control-list{
+.readable-control-list {
     margin: 0;
     padding: 0;
     display: inline-block;
 }
 
-.sorting-arrows .active{
+.sorting-arrows .active {
     color: red;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import {formatTimestamp} from '../util/utils';
 import PropTypes from 'prop-types';
 
-const PostSummary = ({title, author, timestamp, voteScore,commentsNo, body}) => (
+const PostSummary = ({title, author, timestamp, voteScore, commentsNo, body}) => (
     <div>
         <div className="post-detail-row">
             <span className="post-detail-header">Title: </span>
@@ -34,12 +34,12 @@ const PostSummary = ({title, author, timestamp, voteScore,commentsNo, body}) => 
 );
 
 PostSummary.propTypes = {
-  title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
-  timestamp: PropTypes.number.isRequired,
-  voteScore: PropTypes.number.isRequired,
-  commentsNo: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    timestamp: PropTypes.number.isRequired,
+    voteScore: PropTypes.number.isRequired,
+    commentsNo: PropTypes.number.isRequired,
 };
 
 export default PostSummary;

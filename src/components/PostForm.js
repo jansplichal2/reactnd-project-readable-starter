@@ -14,24 +14,24 @@ class PostForm extends Component {
     }
 
     submitForm(values) {
-        if(this.isNewPost){
+        if (this.isNewPost) {
             this.props.createPost(values).then(data => {
-                const { category, id} = data.post;
+                const {category, id} = data.post;
                 this.props.history.push(`/${category}/${id}`);
             });
         } else {
             this.props.editPost(values).then(data => {
-                const { category, id} = data.post;
+                const {category, id} = data.post;
                 this.props.history.push(`/${category}/${id}`);
             });
         }
 
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const postId = this.props.match.params['post_id'];
 
-        if(postId){
+        if (postId) {
             this.isNewPost = false;
             this.props.fetchPost(postId);
         } else {
@@ -53,7 +53,8 @@ class PostForm extends Component {
                 <div className="col-12 col-md-6">
                     <form className="mt-3 mb-4" onSubmit={handleSubmit(this.submitForm)}>
 
-                        <Field inputRef={el => this.postTitle = el} name="title" label="Title" component={renderField} type="text"/>
+                        <Field inputRef={el => this.postTitle = el} name="title" label="Title" component={renderField}
+                               type="text"/>
                         <Field name="body" label="Body" component={renderTextarea} rows="5"/>
 
                         <div className="form-group">

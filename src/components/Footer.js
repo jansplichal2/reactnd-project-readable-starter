@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Footer = (  ) => {
-    return(
+const Footer = () => {
+    return (
         <footer className="footer">
             <p>&copy; Jan Splichal 2017</p>
         </footer>
