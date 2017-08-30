@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import CategoriesList from './CategoriesList';
 import PostTable from './PostTable';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 
 class MainPage extends Component {
     componentWillMount() {
@@ -37,7 +37,7 @@ class MainPage extends Component {
                 <div className="row">
                     {this.renderCategories()}
                     <div className={this.renderTablePositioning()}>
-                        <PostTable category={this.category} history={this.props.history}/>
+                        <PostTable category={this.category}/>
                     </div>
                     <div className={this.renderButtonPositioning()}>
                         <Link className="btn btn-lg btn-outline-primary" to="/posts/new">New Post</Link>
@@ -48,4 +48,4 @@ class MainPage extends Component {
     }
 }
 
-export default MainPage;
+export default withRouter(MainPage);

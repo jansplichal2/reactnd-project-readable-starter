@@ -82,7 +82,6 @@ class PostForm extends Component {
 }
 
 const validate = values => {
-    //console.log(values);
     const errors = {};
 
     if (!values.title) {

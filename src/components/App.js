@@ -22,7 +22,7 @@ class Readable extends Component {
                     <Route exact path="/:category/:post_id" component={PostDetail}/>
                     <Route exact path="/:category" render={(route) => {
                         // Using the key="2" to force the rerendering of MainPage
-                        return <MainPage match={route.match} history={route.history} key="2"/>;
+                        return <MainPage key="2"/>;
                     }}/>
                 </Switch>
                 <Footer/>

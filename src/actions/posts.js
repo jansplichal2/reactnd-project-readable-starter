@@ -1,33 +1,25 @@
 import {ADD_NEW_POST, DELETE_POST, GET_ALL_POSTS, GET_POST} from './index';
 import * as ReadableAPI from '../util/readableAPI';
 
-function newPost(post) {
-    return {
-        type: ADD_NEW_POST,
-        post
-    }
-}
+const newPost = post => ({
+    type: ADD_NEW_POST,
+    post
+});
 
-function updatePost(post) {
-    return {
-        type: GET_POST,
-        post
-    }
-}
+const updatePost = post => ({
+    type: GET_POST,
+    post
+});
 
-function getPost(post) {
-    return {
-        type: GET_POST,
-        post
-    }
-}
+const getPost = post => ({
+    type: GET_POST,
+    post
+});
 
-const deletePost = (id) => {
-    return {
-        type: DELETE_POST,
-        id
-    };
-};
+const deletePost = id => ({
+    type: DELETE_POST,
+    id
+});
 
 const getAllPosts = posts => ({
     type: GET_ALL_POSTS,

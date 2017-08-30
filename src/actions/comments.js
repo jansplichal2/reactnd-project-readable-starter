@@ -2,35 +2,27 @@ import {ADD_NEW_COMMENT, GET_COMMENT, GET_COMMENTS_FOR_POST, DELETE_COMMENT} fro
 import * as ReadableAPI from '../util/readableAPI';
 
 
-const getCommentsForPost = (comments) => {
-    return {
-        type: GET_COMMENTS_FOR_POST,
-        comments
-    };
-};
+const getCommentsForPost = comments => ({
+    type: GET_COMMENTS_FOR_POST,
+    comments
+});
 
-const newComment = (comment) => {
-    return {
-        type: ADD_NEW_COMMENT,
-        comment
-    };
-};
+const newComment = comment => ({
+    type: ADD_NEW_COMMENT,
+    comment
+});
 
-function updateComment(comment) {
-    return {
-        type: GET_COMMENT,
-        comment
-    }
-}
+const updateComment = comment => ({
+    type: GET_COMMENT,
+    comment
+});
 
-const deleteComment = (id) => {
-    return {
-        type: DELETE_COMMENT,
-        id
-    };
-};
+const deleteComment = id => ({
+    type: DELETE_COMMENT,
+    id
+});
 
-export const fetchCommentsForPost = (postId) => (dispatch) => {
+export const fetchCommentsForPost = postId => dispatch => {
     return ReadableAPI
         .getPostComments(postId)
         .then((comments) => dispatch(getCommentsForPost(comments)));

@@ -7,7 +7,7 @@ import _ from 'lodash';
 class CategoriesList extends Component {
 
     componentDidMount() {
-        this.props.load();
+        this.props.fetchAllCategories();
     }
 
     render() {
@@ -33,8 +33,4 @@ const mapStateToProps = (state, props) => ({
     categories: state.categories,
 });
 
-const mapDispatchToProps = dispatch => ({
-    load: () => dispatch(fetchAllCategories())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoriesList);
+export default connect(mapStateToProps, {fetchAllCategories})(CategoriesList);

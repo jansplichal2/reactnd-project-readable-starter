@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {compose} from 'redux';
 import {fetchAllPosts, downVote, upVote, removePost} from '../actions/posts'
 import {fetchCommentsForPost} from '../actions/comments';
 import {formatTimestamp, stateMap} from '../util/utils';
@@ -50,7 +51,6 @@ class PostTable extends Component {
     }
 
     commentCount(postId) {
-        //console.log(this.props.comments);
         const commentNo = _.size(_.pickBy(this.props.comments, comment => comment.parentId === postId));
         return commentNo;
     }
@@ -152,5 +152,13 @@ const mapStateToProps = (state, props) => {
     }
 };
 
+const enhance = compose(withRouter, connect(mapStateToProps,
+    {
+        fetchAllPosts,
+        fetchCommentsForPost,
+        downVote,
+        upVote,
+        removePost
+    }));
 
-export default connect(mapStateToProps, {fetchAllPosts, fetchCommentsForPost, downVote, upVote, removePost})(PostTable);
+export default enhance(PostTable);
