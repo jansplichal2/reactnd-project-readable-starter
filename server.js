@@ -3,10 +3,10 @@ require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const config = require('./config')
-const categories = require('./categories')
-const posts = require('./posts')
-const comments = require('./comments')
+const config = require('./backend/config')
+const categories = require('./backend/categories')
+const posts = require('./backend/posts')
+const comments = require('./backend/comments')
 
 const app = express()
 
@@ -195,7 +195,7 @@ app.delete('/posts/:id', (req, res) => {
     posts.disable(req.token, req.params.id)
       .then(
           (post) => {
-              comments.disableByParent(req.token, post)
+              return comments.disableByParent(req.token, post)
           })
       .then(
           (data) => res.send(data),
