@@ -38,7 +38,15 @@ export const fetchAllPosts = () => dispatch => (
 export const fetchPost = id => dispatch => (
     ReadableAPI
         .getPost(id)
-        .then(post => dispatch(getPost(post)))
+        .then(res => {
+            return Promise.all([res.status, res.json()]);
+        })
+        .then(([status, post]) => {
+            if(status === 200) {
+                dispatch(getPost(post));
+            }
+            return status;
+    })
 );
 
 export const createPost = values => dispatch => (
@@ -59,7 +67,7 @@ export const downVote = id => dispatch => (
 
 export const removePost = id => dispatch => (
     ReadableAPI.removePost(id)
-        .then(post => dispatch(deletePost(post.id)))
+        .then(() => dispatch(deletePost(id)))
 );
 
 export const editPost = values => dispatch => (

@@ -1,4 +1,5 @@
 # Readable React/Redux application
+Project created as part of Udacity's react nanodegree program.
 
 ## Installation
 
@@ -9,3 +10,6 @@
 
 ## Authors
 * **Jan Splichal**
+
+## License
+The code is licensed under the MIT License.

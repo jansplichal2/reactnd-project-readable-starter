@@ -7,6 +7,7 @@ import {downVote, upVote, removePost, fetchPost} from '../actions/posts'
 import DeleteModal from './DeleteDialog';
 import PostSummary from './PostSummary';
 import _ from 'lodash';
+import ObjectNotFound from './ObjectNotFound';
 
 class PostDetail extends Component {
     constructor(props) {
@@ -14,7 +15,8 @@ class PostDetail extends Component {
 
         this.state = {
             modalIsOpen: false,
-            postId: ''
+            postId: '',
+            postNotFound: false
         };
 
         this.openModal = this.openModal.bind(this);
@@ -39,12 +41,23 @@ class PostDetail extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchPost(this.props.match.params['post_id']);
+        this.setState({postNotFound: false});
+        this.props.fetchPost(this.props.match.params['post_id'])
+            .then(status => {
+                if (status >= 400) {
+                    // issue in the server code - I would expect 404 instead of 500 when post is not found
+                    this.setState({postNotFound: true});
+                } else {
+                    this.setState({postNotFound: false});
+                }
+            });
     }
 
     render() {
         const post = this.props.post;
-        if (!post) {
+        if (this.state.postNotFound) {
+            return <ObjectNotFound name="post"/>;
+        } else if(!post){
             return <span/>;
         }
 

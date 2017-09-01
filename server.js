@@ -195,7 +195,7 @@ app.delete('/posts/:id', (req, res) => {
     posts.disable(req.token, req.params.id)
       .then(
           (post) => {
-              return comments.disableByParent(req.token, post)
+              comments.disableByParent(req.token, post)
           })
       .then(
           (data) => res.send(data),

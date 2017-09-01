@@ -27,7 +27,6 @@ export const getCategoryPosts = (category) =>
 
 export const getPost = (id) =>
     fetch(`${api}/posts/${id}`, {headers})
-        .then(res => res.json());
 
 export const getPostComments = (id) =>
     fetch(`${api}/posts/${id}/comments`, {headers})
@@ -55,7 +54,7 @@ export const removePost = (id) =>
             'Content-Type': 'application/json'
         },
     })
-        .then(res => res.json());
+        .then(res => res);
 
 const voteOnComment = (id, option) => {
     return fetch(`${api}/comments/${id}`, {

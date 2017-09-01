@@ -7,6 +7,7 @@ import Footer from './Footer';
 import './App.css';
 import PostForm from './PostForm';
 import CommentForm from './CommentForm';
+import ObjectNotFound from './ObjectNotFound';
 
 class Readable extends Component {
     render() {
@@ -24,6 +25,7 @@ class Readable extends Component {
                         // Using the key="2" to force the rerendering of MainPage
                         return <MainPage key="2"/>;
                     }}/>
+                    <Route component={ObjectNotFound}/>
                 </Switch>
                 <Footer/>
             </div>
