@@ -12,7 +12,7 @@ const Header = () => {
                         </li>
                     </ul>
                 </nav>
-                <h3 className="text-muted">Udemy Readable</h3>
+                <h3 className="text-muted"><Link className="nav-link" to="/">Udemy Readable</Link></h3>
             </div>
         </div>
     );
